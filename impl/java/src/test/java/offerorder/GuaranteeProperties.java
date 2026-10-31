@@ -60,8 +60,12 @@ class GuaranteeProperties {
    * so this property is expected to fail.  If the refund rule is changed to
    * count earlier refunds, the property starts passing, this test fails, and
    * the expectation should be removed along with the Lean theorem's sorry.
+   *
+   * <p>The seed is fixed so CI always finds the counterexample.  CI starts
+   * with no jqwik database, and an unseeded search of 2000 tries sometimes
+   * missed it (31 October 2026); locally the database replays the last one.
    */
-  @Property(tries = 2000)
+  @Property(tries = 2000, seed = "1")
   @Tag("OO-003.2")
   @Tag("open-question")
   @ExpectFailure(checkResult = ReportCounterexample.class)
