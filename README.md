@@ -286,7 +286,15 @@ This repository builds the files the site reads, served under
   lists each fact's theorem, named after the fact's key in `facts.json`, and
   fails if a fact has none or its theorem depends on `sorry`.
   `scripts/export_airline.py` adds a link to each theorem's line at the
-  build's commit. The airline's support chat cites them.
+  build's commit. Under `general` it lists the theorems of the support chat's
+  rules that hold for every fare, and of what the chat takes as given about
+  amounts. The airline's support chat cites them.
+- `ar-policy.json`, `ar-rules.json` and `ar-checks.json`.
+  `scripts/export_airline_policy.py` writes the support chat's Automated
+  Reasoning policy from `facts.json` and `model.json`: a rule for each fact,
+  the general rules, and what the chat takes as given; each rule's Lean rule,
+  requirements, sentence for people and theorems from `theorems.json`; and a
+  right and a wrong answer for each rule. It stops if a rule has no theorem.
 
 The airline's repository commits a copy of the files, so its site shows a
 pinned version of the model until its `scripts/update-model.sh` takes a newer
@@ -453,7 +461,9 @@ Computed by the build, never typed:
   they show, in `build/airline-data/model.json`, by
   `scripts/export_airline.py`; and the theorem of each fact, in
   `build/airline-data/theorems.json`, by `lake exe airline-facts --theorems`
-  and the same script.
+  and the same script; and the support chat's Automated Reasoning policy, in
+  `build/airline-data/ar-policy.json`, `ar-rules.json` and `ar-checks.json`,
+  by `scripts/export_airline_policy.py`.
 
 `lake exe status` exits nonzero if any declaration depends on `sorry` without
 the `@[open_question]` tag, if an EARS statement or acceptance criterion does
@@ -477,6 +487,8 @@ lake build Oracle oracle                # the test oracle for implementation che
 lake build Airline airline-facts        # Verified Airline's fares, then:
 lake exe airline-facts > build/airline-data/facts.json
 lake exe airline-facts --theorems > build/airline-theorems.json
+python3 scripts/export_airline.py       # model.json and theorems.json, after the review document
+python3 scripts/export_airline_policy.py  # the support chat's policy, from the three files above
 lake build Verify                       # the proofs about the Rust implementation
 
 python3 -m venv .venv && . .venv/bin/activate
@@ -1111,3 +1123,23 @@ Choices made where the plan left room, in the order they came up.
     difference, the amount due on a change, the refund limit) rest on
     theorems in `Rules` whose statements are not yet matched to the chat's
     wording, so the file does not list them.
+54. **The support chat's policy is written here, and every rule has a
+    theorem.** Verified Airline's support chat checks answers with an
+    Automated Reasoning policy generated from the model's files. Its exporter
+    moved from the airline's repository to `scripts/export_airline_policy.py`,
+    which writes `ar-policy.json`, `ar-rules.json` and `ar-checks.json` under
+    `/airline-data/` beside the files they come from. The policy is now one of
+    the model's files, built and checked with the theorems it cites. Each rule
+    in `ar-rules.json` names the theorems that prove it, and the export stops
+    if one has none. The general rules got theorems in `Airline/Theorems.lean`,
+    stated for every rule list: the fare difference of an allowed change, the
+    amount due on one, and the two halves of `acceptRefund`'s limit, with
+    theorems for what the chat takes as given (money is never negative, every
+    fare's price is positive). `lake exe airline-facts --theorems` lists them
+    under `general` and checks them as it checks the facts' theorems. Matching
+    them to the chat's wording found one gap: the amount due was the fee plus
+    the fare difference whenever the new flight costs more, but under the
+    reading that waives a fee above the refundable value, that holds only when
+    the price paid covers the fee. The rule now says so. Every Verified
+    Airline fare in the worked examples costs more than its fee, and the
+    policy's 40 tests in Bedrock still pass.

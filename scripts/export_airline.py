@@ -20,7 +20,9 @@ and theorems.json, which this script writes from build/airline-theorems.json
 (lake exe airline-facts --theorems): for each fact about a change or a
 cancellation, keyed by its place in facts.json, the theorem in
 Airline/Theorems.lean that states it for every input in its stage, with its
-docstring, its rule, and its line on GitHub at the same commit.
+docstring, its rule, and its line on GitHub at the same commit; and under
+"general", the same for the support chat's rules that hold for every fare and
+for what the chat takes as given about amounts.
 
 Addresses are absolute, on this site, since the airline's pages are served
 from another.
@@ -91,15 +93,15 @@ def commit():
 
 
 def theorem_index(source):
-    """Each fact's theorem with a link to its line at the source's commit."""
-    facts = json.loads(THEOREMS.read_text())["facts"]
+    """Each fact's theorem, and each general theorem, with a link to its line
+    at the source's commit."""
+    index = json.loads(THEOREMS.read_text())
     blob = f"{REPO}/blob/{source['commit'] or 'main'}/"
-    return {
-        "source": source,
-        "facts": {key: {**t, "statement": " ".join(t["statement"].split()),
-                        "url": f"{blob}{t['path']}#L{t['line']}"}
-                  for key, t in sorted(facts.items())},
-    }
+
+    def linked(entries):
+        return {key: {**t, "statement": " ".join(t["statement"].split()), "url": f"{blob}{t['path']}#L{t['line']}"}
+                for key, t in sorted(entries.items())}
+    return {"source": source, "facts": linked(index["facts"]), "general": linked(index["general"])}
 
 
 def main():
@@ -138,7 +140,8 @@ def main():
     print(f"wrote build/airline-data/model.json: {len(requirements)} requirements, "
           f"{len(questions)} criteria with open questions"
           + ("" if review else " (review document not built: links use its lookup page)"))
-    print(f"wrote build/airline-data/theorems.json: {len(theorems['facts'])} facts with their theorems")
+    print(f"wrote build/airline-data/theorems.json: {len(theorems['facts'])} facts with their theorems, "
+          f"{len(theorems['general'])} general theorems")
 
 
 if __name__ == "__main__":

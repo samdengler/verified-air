@@ -36,8 +36,10 @@ python3 scripts/render_graph.py
 python3 scripts/render_history.py
 python3 scripts/render_areas.py
 python3 scripts/render_tour.py
-# The rest of /airline-data/, then Verified Airline's wording checked against it.
+# The rest of /airline-data/, the support chat's policy from it, then Verified
+# Airline's wording checked against it.
 python3 scripts/export_airline.py
+python3 scripts/export_airline_policy.py
 scripts/check-airline.sh
 scripts/build-wasm.sh
 

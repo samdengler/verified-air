@@ -97,6 +97,7 @@ jobs:
       # the wording cites a requirement the model lacks, a criterion no longer
       # open, or an amount the facts lack.
       - run: python3 scripts/export_airline.py
+      - run: python3 scripts/export_airline_policy.py
       - run: scripts/check-airline.sh
       # The try-it panels: the Rust rules compiled to WebAssembly.
       - run: scripts/build-wasm.sh

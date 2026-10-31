@@ -1,4 +1,5 @@
 import Airline.Evaluate
+import Rules.OfferOrder.Payment
 
 /-!
 # Verified Airline's fares as theorems
@@ -16,6 +17,11 @@ A fact's theorem is named after its place in the facts: the fact at
 {lit}`fares.main.cancel.noShow` is {lit}`main_cancel_noShow`.
 {lit}`lake exe airline-facts --theorems` lists them for Verified Airline's site,
 with their lines in this file, and fails if a fact has none.
+
+The last two sections state the rules of the airline's support chat that hold
+for every fare, and what the model's types say about amounts.  The chat's
+Automated Reasoning policy, which {lit}`scripts/export_airline_policy.py` writes,
+cites each one beside the rule it backs.
 
 A theorem holds once the terms have started, since no rule is in force
 before then.  The cancellation theorems cover every item, including one whose
@@ -166,5 +172,79 @@ original form of payment, whatever the item's price. -/
 theorem flex_cancel_noShow (hs : j.stageAt now = .noShow) (ht : termsStart ≤ now) :
     cancellationRefund e ff flexFare.rules j now item = .refund (usd 100) true := by
   cases e <;> simp [*]
+
+/-! ## Rules for every fare
+
+Each theorem here holds for every rule list, so for every fare: it states one
+of the support chat's general rules for every allowed change or every refund,
+under every reading of the guide. -/
+
+/-- The fare difference of an allowed change is the new flight's price minus
+the price paid. -/
+theorem change_fareDifference (rs : List Restriction) (q : Rules.OneOrder.Change.ChangeQuote) (a : Bool)
+    (h : voluntaryChange e rs j req = .allowed q a) :
+    q.difference = (req.newPrice.amount : Int) - req.oldPrice.amount := by
+  simp only [voluntaryChange] at h
+  split at h
+  · cases h
+  · split at h
+    · cases h
+      simp [Rules.OneOrder.Change.ChangeQuote.difference]
+    · cases h
+
+/-- When the new flight costs at least the price paid and the price paid
+covers the fee, an allowed change leaves the traveler to pay the fee plus the
+fare difference, and the airline owes nothing back.  This holds under both
+readings of a fee larger than the refundable value and whether the fee is
+netted or charged separately.  Without the second condition the readings
+differ: under one, the airline waives the part of the fee above the price
+paid. -/
+theorem change_amountDue (rs : List Restriction) (q : Rules.OneOrder.Change.ChangeQuote) (a : Bool)
+    (r : Rules.OneOrder.Change.ExcessPenalty)
+    (h : voluntaryChange e rs j req = .allowed q a)
+    (hd : 0 ≤ q.difference) (hf : q.penalty.amount ≤ req.oldPrice.amount) :
+    ((Rules.OneOrder.Change.dueAmounts r q).toAirline : Int) = q.difference + q.penalty.amount ∧
+      (Rules.OneOrder.Change.dueAmounts r q).byAirline = 0 := by
+  simp only [voluntaryChange] at h
+  split at h
+  · cases h
+  · split at h
+    · cases h
+      simp only [Rules.OneOrder.Change.ChangeQuote.difference] at hd hf ⊢
+      cases r <;> cases req.handling <;>
+        simp only [Rules.OneOrder.Change.dueAmounts, Rules.OneOrder.Change.ExcessPenalty.charged,
+          Rules.OneOrder.Change.ChangeQuote.refundable, Rules.OneOrder.Change.ChangeQuote.difference] <;>
+        omega
+    · cases h
+
+/-- A refund larger than the payment it is asked against is refused. -/
+theorem refund_overPayment (p : Rules.OfferOrder.Payment) (rf : Rules.OfferOrder.Refund)
+    (h : p.amount.amount < rf.amount.amount) :
+    Rules.OfferOrder.acceptRefund p rf = false := by
+  simp [Rules.OfferOrder.acceptRefund]
+  omega
+
+/-- A refund no larger than the payment it names is accepted.  The rule looks
+at this one refund and this one payment; whether refunds against one payment
+are capped in total is the model's open criterion OO-003.2. -/
+theorem refund_withinPayment (p : Rules.OfferOrder.Payment) (rf : Rules.OfferOrder.Refund)
+    (hp : rf.payment = p.id) (h : rf.amount.amount ≤ p.amount.amount) :
+    Rules.OfferOrder.acceptRefund p rf = true := by
+  simp [Rules.OfferOrder.acceptRefund, hp, h]
+
+/-! ## Amounts
+
+What the model's types and the fares say about amounts, which the support
+chat's policy takes as given. -/
+
+/-- An amount of money is never negative: the model counts it in minor units,
+as a natural number. -/
+theorem money_nonNegative (m : Money) : (0 : Int) ≤ m.amount := by
+  omega
+
+/-- Every Verified Airline fare has a positive price: the price of one booked
+item on the fare in the worked examples. -/
+theorem fares_pricePositive : ∀ f ∈ fares, 0 < f.price.amount := by
+  decide
 
 end Airline
