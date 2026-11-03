@@ -106,7 +106,7 @@ cancelled with its flight is an open point.  The conditions of each order item
 are given by item reference.  A service is removed through the delivery status
 table ({name}`Delivery.endWith`), so one still REQUESTED from the airline stays
 as it was. -/
-@[ears "ONE-603"]
+@[ears "ONE-603", source "easd-cancellation-of-order-items easd-add-ancillary-services"]
 def cancelItems (m : MoveReading) (h : DependentHandling) (r : LinkReading) (d : ServiceDetails)
     (allows : String → Bool) (o : Order) (named : List String) : Except CancelRejection Order :=
   match named.find? (fun id => !o.items.any (·.id == id)) with

@@ -11,7 +11,7 @@ item.  The guide prices a bundle only as a whole and does not say how much of
 the price belongs to one of its services.  The model takes the share as a
 parameter, a reading of the sources.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Bundle.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Bundle.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Bundle.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Bundle.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -20,6 +20,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Ancilla
 **User Story:** As a customer who drops one passenger from a bundled trip, I want back the part of the price that passenger's services were worth, so that I pay only for what I keep.
 
 **Rule:** WHEN a seller removes services from a bundle THE SYSTEM SHALL cancel them and return their share of the bundle price under the reading. (Lean: `removeFromBundle`)
+
+**Sources:** [EASD guide, Cancellation of Order Items](https://standards.atlassian.net/wiki/spaces/EASD/pages/574783569/Cancellation+of+Order+Items) (standard); [EASD guide, Bundles](https://standards.atlassian.net/wiki/spaces/EASD/pages/574619818) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

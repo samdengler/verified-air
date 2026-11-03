@@ -10,7 +10,7 @@ item reaches its payment time limit.  Each of them moves a service's delivery
 status, and each does it here, through the delivery status table, so that a
 service moves only along a move the table allows, whichever area moves it.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Delivery/Services.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Delivery/Services.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Delivery/Services.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Delivery/Services.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Deliver
 **User Story:** As a revenue accountant, I want every area to move a service's delivery status by the same table, so that a final status I was told about never changes afterwards.
 
 **Rule:** WHEN a rule in any area ends a service THE SYSTEM SHALL move the service's delivery status only along a move of the delivery status table. (Lean: `endWith`)
+
+**Sources:** [EASD guide, Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849062/Order) (standard); [One delivery status table for every area, from the independent critique](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Consistency.lean) (modeller)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

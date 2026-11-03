@@ -13,7 +13,7 @@ reads the formula from the worked examples, states only the two non-negative
 due amounts (the guide's sign for the total is inconsistent), and takes the
 case the guide has no example of as a parameter.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Change/Differential.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Change/Differential.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Change/Differential.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Change/Differential.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -22,6 +22,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Change/
 **User Story:** As a seller, I want every change or cancellation offer to state what the customer pays and what the airline returns, so that I can settle the change without working the amounts out myself.
 
 **Rule:** WHEN the airline prices a change or cancellation of order items THE SYSTEM SHALL state the amount due to the airline, the amount due by the airline and a type code that names the outcome. (Lean: `priceDifferential`)
+
+**Sources:** [EASD guide, Modification of an Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574619782/Modification+of+an+Order) (standard); [EASD guide, Price Differentials](https://standards.atlassian.net/wiki/spaces/EASD/pages/574554213/Price+Differentials) (standard); [EASD guide, Customer requests a cancellation to paid Order or OrderItems resulting in a Reusable amount](https://standards.atlassian.net/wiki/spaces/EASD/pages/817594921) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -57,6 +61,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Change/
 **User Story:** As a customer, I want a penalty to cost me the same whether it is deducted from what I get back or charged on its own, so that the way the airline collects it does not change what I pay.
 
 **Rule:** WHEN a change or cancellation carries a penalty THE SYSTEM SHALL either net the penalty against the price difference or charge it separately. (Lean: `dueAmounts`)
+
+**Sources:** [EASD guide, Cancellation of Order Items](https://standards.atlassian.net/wiki/spaces/EASD/pages/574783569/Cancellation+of+Order+Items) (standard); [EASD guide, Price Differentials](https://standards.atlassian.net/wiki/spaces/EASD/pages/574554213/Price+Differentials) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

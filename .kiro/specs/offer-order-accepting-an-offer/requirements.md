@@ -6,7 +6,7 @@
 
 The decision that turns an offer into an order, or rejects it with a reason.
 
-These requirements are generated from the Lean model in [`Rules/OfferOrder/Accept.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OfferOrder/Accept.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OfferOrder/Accept.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OfferOrder/Accept.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -15,6 +15,10 @@ These requirements are generated from the Lean model in [`Rules/OfferOrder/Accep
 **User Story:** As a customer, I want to accept an offer I was shown, so that I get an order for exactly those services at the offered price.
 
 **Rule:** WHEN a customer accepts an offer THE SYSTEM SHALL create an order only if the offer has not expired and contains at least one item. (Lean: `accept`)
+
+**Sources:** [The pilot slice, simplified and invented for the proof of concept](https://github.com/samdengler/verified-air/blob/main/README.md) (modeller)
+
+**Confirmation:** Not confirmed. The modeller wrote this rule where no source states it.
 
 #### Acceptance Criteria
 

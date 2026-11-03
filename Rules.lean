@@ -2,6 +2,7 @@ import Rules.Core.Money
 import Rules.Core.Time
 import Rules.Core.Party
 import Rules.Core.Classification
+import Rules.Core.Sources
 import Rules.Core.Attributes
 import Rules.OfferOrder.Offer
 import Rules.OfferOrder.Order

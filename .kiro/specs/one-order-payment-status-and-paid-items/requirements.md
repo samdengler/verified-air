@@ -8,7 +8,7 @@ A payment's status follows from the transactions of its payment methods, and
 an order item counts as paid once a successful payment covers it.  The airline
 records each method's outcome as it learns it.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Payment/Status.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Payment/Status.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Payment/Status.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Payment/Status.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -17,6 +17,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Payment
 **User Story:** As an airline, I want a payment made with several methods to succeed only when every method succeeds, so that I never treat an order item as paid when part of its money will not arrive.
 
 **Rule:** THE SYSTEM SHALL give a payment the status FAILED if it has no payment method or the transaction of any of its payment methods failed, SUCCESSFUL if all of them succeeded, and PENDING otherwise. (Lean: `status`)
+
+**Sources:** [EASD guide, Use of multiple payment methods](https://standards.atlassian.net/wiki/spaces/EASD/pages/2592899087/Use+of+multiple+payment+methods+to+pay+for+a+single+item) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -35,6 +39,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Payment
 
 **Rule:** THE SYSTEM SHALL count an order item paid once a SUCCESSFUL payment covers it. (Lean: `isPaid`)
 
+**Sources:** [IATA capability PAYORD](https://retailing.iata.org/armi/docs/PAYORD/) (standard)
+
+**Confirmation:** Not confirmed yet.
+
 #### Acceptance Criteria
 
 1. WHEN a SUCCESSFUL payment covers an order item THE SYSTEM SHALL count the item paid.
@@ -49,6 +57,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Payment
 **User Story:** As an airline, I want the outcome of each payment method's transaction recorded as it arrives, so that a payment's status follows what I know about its funds.
 
 **Rule:** WHEN the airline reports the outcome of a payment method's transaction THE SYSTEM SHALL record it as the transaction's status if the move from the recorded status is allowed. (Lean: `recordOutcome`)
+
+**Sources:** [EASD guide, Pay Offline Using Redirection](https://standards.atlassian.net/wiki/spaces/EASD/pages/574455927/Pay+Offline+Using+Redirection) (standard); [EASD guide, Use of multiple payment methods](https://standards.atlassian.net/wiki/spaces/EASD/pages/2592899087/Use+of+multiple+payment+methods+to+pay+for+a+single+item) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

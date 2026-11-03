@@ -8,7 +8,7 @@ An order item waiting for payment carries a payment time limit.  When the
 limit passes and no successful payment covers the item, the item is removed
 and any payment still pending for it fails.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Payment/TimeLimit.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Payment/TimeLimit.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Payment/TimeLimit.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Payment/TimeLimit.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -17,6 +17,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Payment
 **User Story:** As an airline, I want unpaid order items removed when their payment time limit passes, so that seats and services are not held for customers who do not pay.
 
 **Rule:** WHEN an order item's payment time limit passes with no SUCCESSFUL payment covering it THE SYSTEM SHALL remove the item and mark FAILED every PENDING payment that covers it. (Lean: `expireUnpaid`)
+
+**Sources:** [EASD guide, Time Limits](https://standards.atlassian.net/wiki/spaces/EASD/pages/574423066/Time+Limits) (standard); [EASD guide, Pay Offline Using Redirection](https://standards.atlassian.net/wiki/spaces/EASD/pages/574455927/Pay+Offline+Using+Redirection) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

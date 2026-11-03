@@ -47,7 +47,7 @@ The resolution defines neither an open item nor first usage.  The model reads
 an open item as an active one, which depends on a reading of the guide
 ({name}`ValueReading`).  The instant of first usage, if any, and the instant
 every item reached a final status, if they all have, are inputs. -/
-@[ears "ONE-406"]
+@[ears "ONE-406", source "iata-r797"]
 def mustKeep (m : MonthCount) (v : ValueReading) (o : Order) (firstUse finalSince : Option Instant)
     (now : Instant) : Bool :=
   if o.isOpened v then

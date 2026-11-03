@@ -8,7 +8,7 @@ A seller cancels an order that has no payment at once.  An order with any
 payment, full or partial, is cancelled only by accepting a cancellation offer
 from the airline, priced like a change whose new price is zero.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Change/Cancel.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Change/Cancel.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Change/Cancel.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Change/Cancel.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -17,6 +17,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Change/
 **User Story:** As a seller, I want an unpaid order cancelled at once and a paid order cancelled through an offer, so that every cancellation that returns money is priced first.
 
 **Rule:** WHEN a seller asks to cancel an order THE SYSTEM SHALL cancel it at once if no payment has been received for it, and otherwise only through a cancellation offer. (Lean: `requestCancellation`)
+
+**Sources:** [EASD guide, Cancellation of Order Items](https://standards.atlassian.net/wiki/spaces/EASD/pages/574783569/Cancellation+of+Order+Items) (standard); [IATA capability ORDCA2](https://retailing.iata.org/armi/docs/ORDCA2/) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

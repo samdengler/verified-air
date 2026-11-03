@@ -66,7 +66,8 @@ The checks run in this order: payment time limits, a payment method present,
 currencies, commitment amounts, commitments for items with an amount to pay,
 and the requested total.  The result is the amount charged to each method, in
 the order of the methods. -/
-@[ears "ONE-304"]
+@[ears "ONE-304",
+  source "easd-multiple-payment-methods easd-pay-for-an-existing-order easd-payment-simulation"]
 def acceptPayment (o : PayableOrder) (p : Transaction) (now : Instant) :
     Except PaymentRejection (List Money) :=
   if (o.coveredBy p).any (fun pi => pi.timeLimit.any (· ≤ now)) then .error .timeLimitPassed

@@ -399,6 +399,13 @@ Authored, and reviewed against the Lean by a second person:
   its acceptance criteria as list items (`* OO-001.1: If ...`).
 - The `@[checks "OO-001.1"]` tags on theorems and examples, which say which
   criteria each one checks.
+- The `@[source "easd-order"]` tag on each rule, which names the pages the
+  rule was written from by their keys in `Rules/Core/Sources.lean`, and the
+  list of sources in that file.
+- A `@[confirmed ...]` tag on a rule, which records that a subject matter
+  expert, production data or a second independent source confirmed the rule
+  as written. None is written yet: nothing in this proof of concept has been
+  confirmed by a business.
 - The Verso chapters `Overview`, `Objects`, `Rules` and `Open Questions` in
   `Review/Review/`.
 - The review document's stylesheet and script, `Review/review.css` and
@@ -429,6 +436,13 @@ Computed by the build, never typed:
   check it: open if a checking theorem is open, proven if one is proven,
   example only if only examples check it, and not checked otherwise. The
   criteria go to `build/ears-criteria.csv` and into the requirement specs.
+- Each rule's fingerprint, a hash of its docstring, its type and its
+  definition, and its provenance: confirmed if its confirmation carries the
+  current fingerprint, confirmed but out of date if the rule changed after the
+  confirmation, written from a source if it names one other than the
+  modeller, and assumed by the modeller otherwise. They go to
+  `build/provenance.csv`, into each requirement chapter and into the
+  requirement specs.
 - The requirement specs in `.kiro/specs/`. These are committed so they can be read on
   GitHub and opened in Kiro, and CI fails if the committed copies differ from
   what `scripts/render_status.py` writes.
@@ -467,8 +481,10 @@ Computed by the build, never typed:
 
 `lake exe status` exits nonzero if any declaration depends on `sorry` without
 the `@[open_question]` tag, if an EARS statement or acceptance criterion does
-not follow exactly one EARS template, if a rule lacks a story or criteria, or if
-a `@[checks]` tag names a criterion no rule defines. CI runs it before
+not follow exactly one EARS template, if a rule lacks a story or criteria, if
+a `@[checks]` tag names a criterion no rule defines, if a rule has no
+`@[source]` tag, or if a declaration other than a rule carries `@[confirmed]`.
+It warns about a confirmation that is out of date. CI runs it before
 rendering anything.
 
 ## Building locally
@@ -1143,3 +1159,31 @@ Choices made where the plan left room, in the order they came up.
     the price paid covers the fee. The rule now says so. Every Verified
     Airline fare in the worked examples costs more than its fee, and the
     policy's 40 tests in Bedrock still pass.
+55. **Every rule names its sources, and a confirmation goes out of date when
+    the rule changes.** A model written from documents can be wrong where a
+    document is wrong or where it was read wrong, and a proof does not catch
+    a rule and its guarantee mistranslated the same way. So each rule records
+    where it came from and whether anyone outside the model has confirmed it.
+    `@[source "<key> ..."]` names the sources by key, and
+    `Rules/Core/Sources.lean` lists each key once with its kind, title and
+    link. The kinds run from a published standard to the airline's own
+    policy, a rules engine, code, tests, production data and a subject matter
+    expert, plus the modeller for a rule no source states. The attribute
+    rejects an unknown key where it is written, and `lake exe status` fails
+    on a rule with none. The first keys come from the blueprint's `Source:`
+    paragraphs: a rule names the pages cited on the nodes for it and for the
+    theorems that check its criteria. The three pilot rules name only
+    `pilot-slice`, since they were simplified and invented for the proof of
+    concept, and ONE-105 also names `model-consistency`, the critique's fix in
+    decision 47. `@[confirmed sme "2026-11-03" "<who>" "<what was confirmed>"
+    "<fingerprint>"]` records a confirmation by a subject matter expert,
+    production data (`data`) or a second independent source (`crosscheck`).
+    The fingerprint is a hash of the rule's docstring, type and definition at
+    the time, copied from `build/status.json`. When the rule changes, the
+    fingerprints differ, the rule shows as confirmed but out of date, and
+    `lake exe status` warns until someone confirms it again or the tag is
+    removed. A Lean or Mathlib upgrade that elaborates a rule differently
+    changes its fingerprint too. Each requirement chapter and each spec now
+    lists the rule's sources and says whether it is confirmed, the specs
+    index counts the rules by provenance, and `provenance.csv` has a row per
+    rule. No rule carries a confirmation, because none has happened.

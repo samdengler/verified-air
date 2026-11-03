@@ -10,7 +10,7 @@ delivery, the statuses no event leaves, and suspension.  The sources show some
 moves and leave others undecided, so the model takes the undecided moves as a
 parameter, a reading of the sources.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Delivery/Moves.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Delivery/Moves.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Delivery/Moves.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Delivery/Moves.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Deliver
 **User Story:** As an airline, I want a service's delivery status to change only along the moves the standard describes, so that a service is delivered only once it is paid for and each status means the same to every party.
 
 **Rule:** WHEN an event happens to a service THE SYSTEM SHALL move its delivery status only along the moves in the delivery status table. (Lean: `move`)
+
+**Sources:** [EASD guide, Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849062/Order) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -54,6 +58,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Deliver
 
 **Rule:** WHEN a service is cancelled, expires, is not claimed or cannot be delivered THE SYSTEM SHALL move it to the delivery status that records why. (Lean: `endService`)
 
+**Sources:** [EASD guide, Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849062/Order) (standard)
+
+**Confirmation:** Not confirmed yet.
+
 #### Acceptance Criteria
 
 1. WHEN a service that is CONFIRMED, READY TO PROCEED or READY TO DELIVER is cancelled THE SYSTEM SHALL mark it REMOVED HOLD VALUE if the airline holds its value for reuse and REMOVED if not.
@@ -74,6 +82,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Deliver
 **User Story:** As a revenue accountant, I want a service's final delivery status never to change, so that what accounting was told about the service stays true.
 
 **Rule:** THE SYSTEM SHALL treat DELIVERED, REMOVED, EXPIRED, NOT CLAIMED and FAILED TO DELIVER as final delivery statuses, which no event leaves. (Lean: `isFinal`)
+
+**Sources:** [IATA capability ORDSTS](https://retailing.iata.org/armi/docs/ORDSTS/) (standard); [EASD guide, Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849062/Order) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -105,6 +117,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Deliver
 **User Story:** As an airline, I want to suspend delivery of a service, for example on suspected fraud, and lift the suspension later, so that delivery stops without losing where the service was.
 
 **Rule:** WHEN the airline suspends a service THE SYSTEM SHALL record the delivery status it left and return it only to that status or remove it. (Lean: `step`)
+
+**Sources:** [EASD guide, Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849062/Order) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

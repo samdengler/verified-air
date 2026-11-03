@@ -11,7 +11,7 @@ formula.  The model adds the parts up, and takes as a parameter the one choice
 the examples leave open: whether the consumption tax not included in the price
 comes from the tax lines or from the stated total of excluded tax.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/Price.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Offers/Price.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/Price.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Offers/Price.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -20,6 +20,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/
 **User Story:** As a seller, I want every price to add up from its parts, so that the total I show the customer is the total the airline charges.
 
 **Rule:** WHEN an airline states a price with its parts THE SYSTEM SHALL total the price as its base amount plus its surcharges, fees, taxes and the consumption tax not included in it. (Lean: `priceTotal`)
+
+**Sources:** [EASD guide, Currency in Monetary Amounts](https://standards.atlassian.net/wiki/spaces/EASD/pages/749305864/Currency+in+Monetary+Amounts) (standard); [EASD guide, Discounts](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849038/Discounts) (standard); [EASD guide, Taxes, Fees, and Charges](https://standards.atlassian.net/wiki/spaces/EASD/pages/574455915/Taxes+Fees+and+Charges) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

@@ -10,7 +10,7 @@ say which effect applies.  The model takes the effect for each kind of service
 as a parameter, a reading of the sources: a dependent moves to the new flight,
 is cancelled with its value refunded or stored, or must be reshopped.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Replace.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Replace.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Replace.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Replace.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Ancilla
 **User Story:** As a customer whose flight changed, I want to be told what happens to my bag and my seat, so that I know what I still hold on the new flight.
 
 **Rule:** WHEN a flight service is replaced by a flight on another segment THE SYSTEM SHALL state for each live service that depends on it the effect the reading gives for its kind. (Lean: `replaceFlight`)
+
+**Sources:** [EASD guide, Inform of Impacted Dependent Services](https://standards.atlassian.net/wiki/spaces/EASD/pages/672825400) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

@@ -11,7 +11,7 @@ that segment, as in the seat worked example.  The guide states no rule that a
 seat goes to one passenger only, or that a passenger holds one seat per
 segment; the model checks each choice against the seat map and nothing else.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Seats.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Seats.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Seats.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Seats.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -20,6 +20,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Ancilla
 **User Story:** As a passenger, I want the seat I chose to be mine alone, so that I do not find someone else in it.
 
 **Rule:** WHEN a seller chooses seats for passengers THE SYSTEM SHALL add one order item for each seat the seat map marks available, and refuse the request if any seat chosen is not. (Lean: `chooseSeats`)
+
+**Sources:** [EASD guide, Seat Map and Availability](https://standards.atlassian.net/wiki/spaces/EASD/pages/574586953) (standard); [EASD guide, Customer Adds an Ancillary to Existing Order - Seat Availability](https://standards.atlassian.net/wiki/spaces/EASD/pages/842268814) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

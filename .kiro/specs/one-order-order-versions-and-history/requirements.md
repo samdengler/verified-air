@@ -10,7 +10,7 @@ followed by the change groups, from which a seller can rebuild each version.
 A seller may send the version it saw with a change, so the airline can tell
 whether the change was made on data that still holds.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Creation/Version.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Creation/Version.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Creation/Version.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Creation/Version.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Creatio
 **User Story:** As a seller, I want each version of an order to stand for one set of changes, so that I can rebuild any version from the order's history.
 
 **Rule:** WHEN the airline applies a group of changes to an order THE SYSTEM SHALL raise the order's version by one and record the group in the order's history. (Lean: `recordChanges`)
+
+**Sources:** [EASD guide, Order Versioning](https://standards.atlassian.net/wiki/spaces/EASD/pages/574259659/Order+Versioning) (standard); [EASD guide, Order History](https://standards.atlassian.net/wiki/spaces/EASD/pages/574652557/Order+History) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -51,6 +55,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Creatio
 **User Story:** As a seller, I want a change I make on an order I saw at an older version to be refused, so that I never overwrite a change I have not seen.
 
 **Rule:** WHEN a seller sends a change request THE SYSTEM SHALL compare the order version the request carries, if any, with the order's current version before applying the change. (Lean: `requestChange`)
+
+**Sources:** [EASD guide, Order Versioning](https://standards.atlassian.net/wiki/spaces/EASD/pages/574259659/Order+Versioning) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

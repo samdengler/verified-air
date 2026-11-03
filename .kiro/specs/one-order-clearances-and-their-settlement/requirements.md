@@ -10,7 +10,7 @@ dates.  The sources name the clearance statuses without a table of the moves
 between them, and leave open how repeated clearances for one payment are
 caught.  The model takes those answers as parameters.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Accounting/Clearance.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accounting/Clearance.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Accounting/Clearance.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accounting/Clearance.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Account
 **User Story:** As an airline, I want the Clearance Manager to accept each payment's clearance once, so that no payment is settled twice.
 
 **Rule:** WHEN the ORA sends a clearance THE SYSTEM SHALL accept it unless it repeats a clearance already accepted, and record only accepted clearances. (Lean: `submit`)
+
+**Sources:** [Settlement with Orders, Clearance Manager](https://standards.atlassian.net/wiki/spaces/SWO/pages/574259794) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -47,6 +51,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Account
 **User Story:** As an airline, I want each clearance's status to say how much of it is settled, so that I can match every clearing to what I am owed.
 
 **Rule:** WHEN the ORA cancels a clearance or the Clearance Manager settles, claws back or writes off money on it THE SYSTEM SHALL move the clearance's status and amounts as the clearance statuses describe. (Lean: `settleStep`)
+
+**Sources:** [Settlement with Orders, Codeset List](https://standards.atlassian.net/wiki/spaces/SWO/pages/574456090) (standard); [Settlement with Orders, Remittance of Funds](https://standards.atlassian.net/wiki/spaces/SWO/pages/574718145) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

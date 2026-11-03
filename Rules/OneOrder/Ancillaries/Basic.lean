@@ -108,7 +108,7 @@ Which link holds is the reading's ({name}`LinkReading`).  Under the reference
 reading an ancillary may name another ancillary as its parent, such as a
 lounge pass naming a premium seat.  The rule counts dependents of flights
 only, so such a pass depends on no flight. -/
-@[ears "ONE-601"]
+@[ears "ONE-601", source "easd-inform-of-impacted-dependent-services easd-add-ancillary-services"]
 def dependents (r : LinkReading) (d : ServiceDetails) (o : Order) (f : Service) : List Service :=
   (services o).filter (dependsOn r d f)
 

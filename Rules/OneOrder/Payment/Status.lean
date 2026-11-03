@@ -37,7 +37,7 @@ The guide describes a payment as made with one or more payment methods.  A
 payment with none collects nothing, so it is FAILED.  Without that case, every
 method of an empty payment would count as succeeded, and the payment with
 them. -/
-@[ears "ONE-301"]
+@[ears "ONE-301", source "easd-multiple-payment-methods"]
 def Transaction.status (p : Transaction) : PaymentStatus :=
   if p.parts.isEmpty then .failed
   else if p.parts.any (·.status = .failed) then .failed
@@ -68,7 +68,7 @@ Acceptance criteria:
 The amounts are checked when the payment is accepted: the requested amounts of
 a payment add up to the price of the items it covers.  Value carried over from
 an item that a change replaced is not modelled. -/
-@[ears "ONE-302"]
+@[ears "ONE-302", source "armi-payord"]
 def isPaid (payments : List Transaction) (ref : String) : Bool :=
   payments.any (·.pays ref)
 
@@ -111,7 +111,7 @@ Acceptance criteria:
 
 Which moves are allowed besides those out of PENDING is a reading of the guide
 (see {name}`OutcomeReading`). -/
-@[ears "ONE-303"]
+@[ears "ONE-303", source "easd-pay-offline-using-redirection easd-multiple-payment-methods"]
 def recordOutcome (r : OutcomeReading) (p : Transaction) (ref : String) (s : PaymentStatus) : Transaction :=
   { p with parts := p.parts.map fun m => if m.id = ref then m.record r s else m }
 

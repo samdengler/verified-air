@@ -167,7 +167,7 @@ Acceptance criteria:
 
 Whether a rule's expiration date ends it is a reading of the guide
 ({name}`ExpiryReading`). -/
-@[ears "ONE-503"]
+@[ears "ONE-503", source "easd-offer-restrictions easd-offer-conditions-and-restrictions"]
 def ruleInForce (e : ExpiryReading) (rules : List Restriction) (j : Journey) (a : Action)
     (now : Instant) : Option Restriction :=
   latestOf (candidates e rules j a now)
@@ -225,7 +225,7 @@ Acceptance criteria:
 The quote is a change for ONE-201 to price ({name}`Change.priceDifferential`):
 the old and new prices, the fee as the penalty, and nothing forfeited.  When no rule is in force the decision says
 so; the guide does not say what applies then. -/
-@[ears "ONE-504"]
+@[ears "ONE-504", source "easd-offer-restrictions"]
 def voluntaryChange (e : ExpiryReading) (rules : List Restriction) (j : Journey)
     (req : ChangeRequest) : ChangeDecision :=
   match ruleInForce e rules j (.change req.kind) req.requestedAt with
@@ -305,7 +305,7 @@ Acceptance criteria:
 Which amount a refund marked full and also given a fixed amount returns is a
 reading of the guide ({name}`FullOrFixed`).  When no cancel rule is in force
 the decision says so; the guide does not say what applies then. -/
-@[ears "ONE-505"]
+@[ears "ONE-505", source "easd-offer-restrictions"]
 def cancellationRefund (e : ExpiryReading) (ff : FullOrFixed) (rules : List Restriction)
     (j : Journey) (now : Instant) (item : CancelledItem) : RefundDecision :=
   match ruleInForce e rules j .cancel now with

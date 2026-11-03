@@ -62,7 +62,7 @@ The penalties and forfeited amounts are kept at order level, as the guide
 records them from release 24.1, so they stay when the item they came from is
 replaced.  The model keeps totals; the guide's individual records with their
 links to order items are not modelled. -/
-@[ears "ONE-205"]
+@[ears "ONE-205", source "armi-ordpen"]
 def settle (l : Ledger) (d : PriceDifferential) : Ledger :=
   { paid := l.paid + d.dueToAirline.amount, refunded := l.refunded + d.dueByAirline.amount,
     penalties := l.penalties + d.penalty.amount, forfeited := l.forfeited + d.forfeited.amount }

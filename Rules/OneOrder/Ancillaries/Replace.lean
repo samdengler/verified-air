@@ -70,7 +70,7 @@ Acceptance criteria:
 The effect for each kind is the reading's; which services depend on the
 flight is the link's ({name}`LinkReading`).  A moved seat keeps its seat
 number, since the service details are kept by reference. -/
-@[ears "ONE-604"]
+@[ears "ONE-604", source "easd-inform-of-impacted-dependent-services"]
 def replaceFlight (e : ServiceKind → DependentEffect) (r : LinkReading) (d : ServiceDetails)
     (o : Order) (f : Service) (newSeg : String) : List Impact :=
   ((dependents r d o f).filter isLive).map (impactOf e d newSeg)

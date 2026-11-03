@@ -90,7 +90,7 @@ Acceptance criteria:
 
 The result lists every status whose condition holds, so an item that meets two
 conditions, or none, shows it. -/
-@[ears "ONE-002"]
+@[ears "ONE-002", source "easd-order"]
 def itemStatuses (v : ValueReading) (i : OrderItem) : List ItemStatus :=
   (if i.isActive v then [.active] else []) ++
     (if i.isCancelled v then [.cancelled] else []) ++
@@ -124,7 +124,7 @@ Acceptance criteria:
   status opened or the status closed.
 
 The result lists every status whose condition holds. -/
-@[ears "ONE-003"]
+@[ears "ONE-003", source "easd-order"]
 def orderStatuses (v : ValueReading) (o : Order) : List OrderStatus :=
   (if o.isOpened v then [.opened] else []) ++ (if o.isClosed v then [.closed] else [])
 

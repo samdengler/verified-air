@@ -73,7 +73,7 @@ rejected here: a request that selects nothing from any offer is rejected when
 the order is created ({lit}`createOrder`), since an order holds at least one
 item.  The guide also asks a selection to name the passengers each item was
 built for; the model does not check that. -/
-@[ears "ONE-401"]
+@[ears "ONE-401", source "armi-ordwpm armi-general-guidance"]
 def selectItems (o : MarkedOffer) (sel : List String) : Except CreateRejection (List OfferItem) :=
   match sel.find? (fun id => !o.offer.items.any (·.id == id)) with
   | some id => .error (.unknownItem o.offer.id id)
@@ -185,7 +185,7 @@ one is rejected depends on the reading of the sources
 of its item prices when they share a currency
 ({name}`Rules.OneOrder.Change.orderPrice`), since the guide no longer stores a
 total on the order. -/
-@[ears "ONE-402"]
+@[ears "ONE-402", source "easd-order"]
 def createOrder (m : MultiOfferHandling) (offers : List MarkedOffer) (req : List Selection) (now : Instant)
     (orderId : String) : Except CreateRejection Order :=
   match pickItems m offers now orderId req with

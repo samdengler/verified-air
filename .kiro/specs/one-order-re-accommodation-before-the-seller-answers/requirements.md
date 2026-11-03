@@ -12,7 +12,7 @@ start CONFIRMED.  The sources do not say whether a change awaiting acceptance
 is provisional, so the model takes the answer as a parameter, a reading of the
 sources.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/AirlineChange/Reaccommodate.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/AirlineChange/Reaccommodate.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/AirlineChange/Reaccommodate.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/AirlineChange/Reaccommodate.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -21,6 +21,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Airline
 **User Story:** As a customer whose flights the airline changed, I want the new flights in my order at no extra cost and the old ones kept until I accept, so that I can still choose what to do.
 
 **Rule:** WHEN the airline moves a customer to other flights THE SYSTEM SHALL replace the affected order item with a new item at the same price, holding a service for each passenger on each new flight. (Lean: `notifyChange`)
+
+**Sources:** [EASD guide, Airline notifies Seller of changes to an Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/815202352) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

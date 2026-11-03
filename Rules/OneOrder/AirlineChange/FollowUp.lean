@@ -160,7 +160,7 @@ A time limit passes at its instant, as an offer expires at its expiry instant.
 A follow-up action with no stated consequence takes the reading's default
 ({name}`FollowUpReading`).  The result is the consequence that applies at the
 instant given, or {lean}`none` when none applies yet. -/
-@[ears "ONE-702"]
+@[ears "ONE-702", source "easd-seller-follow-up-actions"]
 def consequenceAt (r : FollowUpReading) (n : ChangeNotice) (now : Instant) : Option Inaction :=
   match n.lapse r with
   | some (t, c) => if t ≤ now then some c else none
@@ -225,7 +225,7 @@ The seller's acts are listed in the order they happened; the first act that
 answers the notice resolves it, and answering one follow-up action resolves
 them all.  Whether contacting the airline counts as an answer is the reading's
 ({name}`FollowUpReading`). -/
-@[ears "ONE-701"]
+@[ears "ONE-701", source "easd-seller-follow-up-actions"]
 def resolve (r : FollowUpReading) (n : ChangeNotice) (acts : List SellerAct) (now : Instant) :
     Resolution :=
   if n.followUps.isEmpty then .acknowledgeOnly

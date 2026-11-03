@@ -127,7 +127,7 @@ Auto-cancellation cancels and refunds; the model prices it as a Cancel of the
 affected items.  Whether the fees apply is the reading's
 ({name}`DeclineFees`), and which changes are involuntary is another reading's
 ({name}`InvoluntaryReading`). -/
-@[ears "ONE-703"]
+@[ears "ONE-703", source "easd-seller-follow-up-actions"]
 def declineOffer (e : ExcessPenalty) (w : DeclineFees) (inv : InvoluntaryReading) (n : ChangeNotice)
     (affected : Money) (t : DeclineTerms) (d : Decline) : Except QuoteRejection PriceDifferential :=
   priceDifferential e (declineQuote w inv n affected t d)

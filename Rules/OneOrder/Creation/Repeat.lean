@@ -65,7 +65,7 @@ A request that names an offer with an order is handled as the reading of the
 guide says ({name}`RepeatHandling`).  A new order is created as
 {name}`createOrder` says, under its own reading.  When it names offers from more than one
 recorded order, the first recorded order is the existing one. -/
-@[ears "ONE-403"]
+@[ears "ONE-403", source "easd-create-order-without-payment"]
 def createOnce (h : RepeatHandling) (m : MultiOfferHandling) (book : List CreatedOrder)
     (offers : List MarkedOffer) (req : List Selection) (now : Instant) (orderId : String) :
     Except CreateRejection (Order × List CreatedOrder) :=

@@ -8,7 +8,7 @@ An order is what the customer bought: the items of an accepted offer, each
 with its own delivery state.  It corresponds to the IATA ONE Order `Order`,
 `OrderItem`, and the delivery status of a service.
 
-These requirements are generated from the Lean model in [`Rules/OfferOrder/Order.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OfferOrder/Order.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OfferOrder/Order.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OfferOrder/Order.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -17,6 +17,10 @@ These requirements are generated from the Lean model in [`Rules/OfferOrder/Order
 **User Story:** As an operations agent, I want a service's delivery state to change only along the allowed transitions, so that a delivered service is never cancelled and a service is never refunded before it is cancelled.
 
 **Rule:** WHEN a delivery event is applied to a service THE SYSTEM SHALL allow only the transitions ready to delivered, ready to cancelled, cancelled to refunded. (Lean: `step`)
+
+**Sources:** [The pilot slice, simplified and invented for the proof of concept](https://github.com/samdengler/verified-air/blob/main/README.md) (modeller)
+
+**Confirmation:** Not confirmed. The modeller wrote this rule where no source states it.
 
 #### Acceptance Criteria
 

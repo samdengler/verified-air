@@ -75,7 +75,7 @@ Acceptance criteria:
 
 The checks before creating the order are the same as in the airline's rules:
 expiry first, then an empty offer, then items priced in another currency. -/
-@[ears "ONE-001"]
+@[ears "ONE-001", source "easd-order"]
 def accept (o : Offer) (now : Instant) (orderId : String) : Except Rules.OfferOrder.Rejection Order :=
   if now ≥ o.expiresAt then .error .expired
   else if o.items.isEmpty then .error .emptyOffer

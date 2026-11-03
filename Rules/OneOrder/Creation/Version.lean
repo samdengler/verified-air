@@ -136,7 +136,7 @@ Acceptance criteria:
 
 The history is listed oldest first or newest first, as the reading of the
 sources says ({name}`HistoryListing`, {name}`orderHistory`). -/
-@[ears "ONE-404"]
+@[ears "ONE-404", source "easd-order-versioning easd-order-history"]
 def recordChanges (r : OrderRecord) (g : ChangeGroup) : OrderRecord :=
   { r with groups := r.groups ++ [g], current := applyGroup r.current g, version := r.version + 1 }
 
@@ -180,7 +180,7 @@ Acceptance criteria:
 A request without a version proceeds, as the guide says.  A request with
 another version is handled as the reading of the guide says
 ({name}`StaleHandling`). -/
-@[ears "ONE-405"]
+@[ears "ONE-405", source "easd-order-versioning"]
 def requestChange (s : StaleHandling) (r : OrderRecord) (seen : Option Nat) (g : ChangeGroup) :
     Except VersionRejection OrderRecord :=
   match seen with

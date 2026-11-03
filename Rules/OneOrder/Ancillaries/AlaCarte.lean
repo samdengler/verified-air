@@ -89,7 +89,7 @@ The unit of the unit price is not named in the guide; the model prices per
 passenger and segment, as the add bag worked example does.  The last criterion
 is the rule that each offer item becomes one order item, as {name}`accept`
 makes it (ONE-001.1). -/
-@[ears "ONE-606"]
+@[ears "ONE-606", source "easd-offers easd-add-ancillary-services"]
 def chooseAlaCarte (orderId : String) (oi : AlaCarteItem) (c : AlaCarteChoice) :
     Except AlaCarteRejection (List OrderItem) :=
   if c.passengers = [] ∨ c.segments = [] ∨ c.quantity = 0 then .error .emptyChoice

@@ -90,7 +90,7 @@ with its own payment ID, and so two clearances.  Whether a signed clearance is
 checked for a repeated order and payment is a reading of the sources
 ({name}`RepeatReading`).  The result is the accepted clearances afterwards, or
 the reason for the rejection. -/
-@[ears "ONE-803"]
+@[ears "ONE-803", source "swo-clearance-manager"]
 def submit (r : RepeatReading) (accepted : List Clearance) (c : Clearance) :
     Except ClearanceRejection (List Clearance) :=
   if accepted.any (·.id == c.id) then .error .repeatedId
@@ -228,7 +228,7 @@ Final Settlement can be clawed back, are a reading of the sources
 ({name}`SettlementReading`).  The EasyPay statuses Funds Collected and Funds
 Partially Collected are not modelled.  The result is the record afterwards, or
 {lean}`none` when the event is refused. -/
-@[ears "ONE-804"]
+@[ears "ONE-804", source "swo-codeset-list swo-remittance-of-funds"]
 def settleStep (r : SettlementReading) (c : SettlementRecord) :
     SettlementEvent → Option SettlementRecord
   | .cancel => if c.status = .accepted then some { c with status := .cancelled } else none

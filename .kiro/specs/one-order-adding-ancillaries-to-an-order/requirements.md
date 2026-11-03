@@ -10,7 +10,7 @@ sources never define flight related.  The taxonomy gives one answer: services
 under Flight are flight related and services under Journey, such as insurance,
 are not.  The model takes the answer as a parameter, a reading of the sources.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Add.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Add.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Add.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Add.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Ancilla
 **User Story:** As an airline, I want a bag or a seat sold only with the flight it is for, so that no customer pays for an ancillary on a flight they do not hold.
 
 **Rule:** WHEN a seller adds services to an order THE SYSTEM SHALL accept the request only if every flight-related ancillary in it has a live flight service for its passenger and segment, in the order or in the request. (Lean: `addServices`)
+
+**Sources:** [EASD guide, Shop for Ancillaries](https://standards.atlassian.net/wiki/spaces/EASD/pages/574226524) (standard); [EASD guide, Customer Adds an Ancillary to Existing Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/842301482) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

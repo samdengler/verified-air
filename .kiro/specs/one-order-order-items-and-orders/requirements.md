@@ -8,7 +8,7 @@ Order items hold services and carry the price; an order holds order items.
 The statuses of items and orders follow from their services, as the ONE Order
 implementation guide defines them.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Order.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Order.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Order.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Order.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -17,6 +17,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Order.l
 **User Story:** As a revenue accountant, I want each order item's status worked out from its services, so that I know which items still hold value.
 
 **Rule:** THE SYSTEM SHALL give each order item the status active, cancelled or closed from the service and delivery statuses of its services. (Lean: `itemStatuses`)
+
+**Sources:** [EASD guide, Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849062/Order) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -45,6 +49,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Order.l
 **User Story:** As an airline, I want an order's status worked out from its items and services, so that an order is closed only when nothing in it holds value.
 
 **Rule:** THE SYSTEM SHALL mark an order opened while any of its services holds value, and closed once all its items are closed or cancelled and all its services are delivered or removed. (Lean: `orderStatuses`)
+
+**Sources:** [EASD guide, Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849062/Order) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

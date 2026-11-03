@@ -10,7 +10,7 @@ references, and their copies in the original item are marked transferred.
 The other services of the original item are cancelled.  This is the change
 once it is paid, as the worked examples show it after payment.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Change/Transfer.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Change/Transfer.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Change/Transfer.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Change/Transfer.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Change/
 **User Story:** As an airline, I want a changed item's kept services to move to the new item under the same references, so that each service is delivered and accounted for once.
 
 **Rule:** WHEN a seller has accepted and paid a change to an order item THE SYSTEM SHALL add a new item with the services the change keeps and cancel the services it does not keep. (Lean: `changeItem`)
+
+**Sources:** [EASD guide, Modification of an Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574619782/Modification+of+an+Order) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

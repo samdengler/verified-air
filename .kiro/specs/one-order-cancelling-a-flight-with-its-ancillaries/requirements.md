@@ -11,7 +11,7 @@ takes the answer as a parameter, a reading of the sources.  An order item's
 conditions may forbid cancelling it, as the extra bag of the add bag worked
 example does.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Cancel.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Cancel.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Cancel.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Cancel.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -20,6 +20,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Ancilla
 **User Story:** As a seller, I want to know what happens to a customer's bag and seat when I cancel their flight, so that the customer neither keeps a service they cannot use nor loses one they were promised.
 
 **Rule:** WHEN a seller cancels order items THE SYSTEM SHALL cancel every live service of the items named and treat the services that depend on a cancelled flight as the reading says. (Lean: `cancelItems`)
+
+**Sources:** [EASD guide, Cancellation of Order Items](https://standards.atlassian.net/wiki/spaces/EASD/pages/574783569/Cancellation+of+Order+Items) (standard); [EASD guide, Customer Adds an Ancillary to Existing Order - Service list](https://standards.atlassian.net/wiki/spaces/EASD/pages/842301531) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

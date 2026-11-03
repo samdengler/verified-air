@@ -59,7 +59,7 @@ Acceptance criteria:
 
 The check looks at this one refund and this one payment; it does not look at
 refunds already made against the same payment. -/
-@[ears "OO-003"]
+@[ears "OO-003", source "pilot-slice"]
 def acceptRefund (p : Payment) (r : Refund) : Bool :=
   r.payment == p.id && decide (r.amount.amount ≤ p.amount.amount)
 

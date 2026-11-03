@@ -54,7 +54,7 @@ Acceptance criteria:
 The checks run in order: expiry first, then an empty offer, then items priced
 in a currency other than the offer's.  The order's price is the sum of the
 item prices, in the offer's currency. -/
-@[ears "OO-001"]
+@[ears "OO-001", source "pilot-slice"]
 def accept (o : Offer) (now : Instant) (orderId : String) : Except Rejection Order :=
   if now ≥ o.expiresAt then .error .expired
   else if o.items.isEmpty then .error .emptyOffer

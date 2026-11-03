@@ -9,7 +9,7 @@ items' payment time limits, the currencies, the commitment method, and whether
 the requested amounts add up to the items' price.  Each payment method is then
 charged its requested amount plus its surcharge.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Payment/Accept.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Payment/Accept.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Payment/Accept.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Payment/Accept.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -18,6 +18,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Payment
 **User Story:** As an airline, I want each payment checked against the items it pays for, so that items are paid in full and on time, and each method is charged its amount plus its surcharge.
 
 **Rule:** WHEN a seller pays for order items THE SYSTEM SHALL accept the payment only if it is made before the items' payment time limits and its requested amounts add up to their price, and shall charge each payment method its requested amount plus its surcharge. (Lean: `acceptPayment`)
+
+**Sources:** [EASD guide, Use of multiple payment methods](https://standards.atlassian.net/wiki/spaces/EASD/pages/2592899087/Use+of+multiple+payment+methods+to+pay+for+a+single+item) (standard); [EASD guide, Pay for an Existing Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574226556/Pay+for+an+Existing+Order) (standard); [EASD guide, Payment Simulation](https://standards.atlassian.net/wiki/spaces/EASD/pages/2593030164/Payment+Simulation) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

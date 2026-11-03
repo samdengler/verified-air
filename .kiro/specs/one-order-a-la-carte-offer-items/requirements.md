@@ -11,7 +11,7 @@ gets two order items, one per journey, each at the unit price.  The model
 follows the worked example: one order item for each passenger and segment
 chosen, each at the unit price times the quantity.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/AlaCarte.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/AlaCarte.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/AlaCarte.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/AlaCarte.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -20,6 +20,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Ancilla
 **User Story:** As a seller, I want an extra bag priced the same way every time, so that I can quote the customer the right amount before they pay.
 
 **Rule:** WHEN a seller chooses an a-la-carte offer item for passengers and segments it lists as eligible THE SYSTEM SHALL create one order item for each passenger and segment chosen, at the unit price times the quantity. (Lean: `chooseAlaCarte`)
+
+**Sources:** [EASD guide, Offers](https://standards.atlassian.net/wiki/spaces/EASD/pages/600637464) (standard); [EASD guide, Customer Adds an Ancillary to Existing Order - Service list](https://standards.atlassian.net/wiki/spaces/EASD/pages/842301531) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

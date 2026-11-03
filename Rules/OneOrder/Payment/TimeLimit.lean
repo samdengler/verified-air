@@ -72,7 +72,7 @@ A time limit passes at its instant, as an offer expires at its expiry instant.
 Which delivery status a removed item's services end in is a reading of the
 guide (see {name}`Removal`), and each service gets there through the delivery
 status table ({name}`Delivery.endWith`). -/
-@[ears "ONE-306"]
+@[ears "ONE-306", source "easd-time-limits easd-pay-offline-using-redirection"]
 def expireUnpaid (m : MoveReading) (r : Removal) (now : Instant) (o : PayableOrder) : PayableOrder :=
   { items := o.items.map fun pi => if o.lapses now pi then pi.remove m r else pi,
     payments := o.payments.map fun p =>

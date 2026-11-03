@@ -8,7 +8,7 @@ What a payment's outcome does to the order items it covers.  A successful
 payment moves their confirmed services to ready to proceed and removes their
 payment time limits; a failed or pending payment changes nothing.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Payment/Outcome.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Payment/Outcome.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Payment/Outcome.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Payment/Outcome.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -17,6 +17,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Payment
 **User Story:** As an airline, I want a successful payment to release the order items it paid for, so that their services can be delivered and are no longer at risk of removal.
 
 **Rule:** WHEN a payment becomes SUCCESSFUL THE SYSTEM SHALL move every CONFIRMED service of the order items it covers to READY TO PROCEED and remove their payment time limits. (Lean: `applyOutcome`)
+
+**Sources:** [EASD guide, Pay Offline Using Redirection](https://standards.atlassian.net/wiki/spaces/EASD/pages/574455927/Pay+Offline+Using+Redirection) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

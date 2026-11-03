@@ -116,7 +116,7 @@ Acceptance criteria:
 The rule records each new seat service as a seat with its number in the
 service details it returns.  It checks each choice against the seat map only,
 which is all the guide describes. -/
-@[ears "ONE-605"]
+@[ears "ONE-605", source "easd-seat-map-and-availability easd-add-ancillary-seats"]
 def chooseSeats (maps : List SeatMap) (d : ServiceDetails) (o : Order) (cs : List SeatChoice) :
     Except SeatRejection (Order × ServiceDetails) :=
   match cs.findSome? (checkSeat maps) with

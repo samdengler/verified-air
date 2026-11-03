@@ -122,7 +122,7 @@ Acceptance criteria:
 A guarantee runs until the earlier of its own limit and the offer's expiry.
 Whether it still holds at that instant is a reading of the guide
 ({name}`GuaranteeEnd`).  The offer's expiry on its own guarantees nothing. -/
-@[ears "ONE-501"]
+@[ears "ONE-501", source "easd-time-limits"]
 def guaranteesAt (b : GuaranteeEnd) (o : TimedOffer) (oi : TimedOfferItem) (now : Instant) :
     Guarantees :=
   { price := o.holds b oi.limits.priceGuarantee now,
@@ -260,7 +260,7 @@ The checks of ONE-001 run first ({name}`accept`).  Then, under the reading that
 asks for a new offer, an item whose price guarantee has lapsed refuses the
 acceptance.  Which payment time limit applies when an offer item states both
 forms is a reading of the guide ({name}`BothForms`). -/
-@[ears "ONE-502"]
+@[ears "ONE-502", source "easd-time-limits"]
 def createOrder (r : CreationReading) (o : TimedOffer) (now : Instant) (orderId : String) :
     Except CreateRejection NewOrder :=
   match accept o.toOffer now orderId with

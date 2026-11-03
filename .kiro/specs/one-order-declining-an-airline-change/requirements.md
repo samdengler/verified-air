@@ -12,7 +12,7 @@ declines a change the airline imposed, and no source defines which changes
 the airline imposes.  The model takes both answers as parameters, readings of
 the sources.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/AirlineChange/Decline.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/AirlineChange/Decline.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/AirlineChange/Decline.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/AirlineChange/Decline.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -21,6 +21,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Airline
 **User Story:** As a customer, I want to know what declining a change the airline made will cost me, so that I can choose between the changed trip, another trip and my money back.
 
 **Rule:** WHEN a customer declines an airline change through Cancel or Reshop THE SYSTEM SHALL price it as a cancellation or change of the affected order items, with the airline's cancellation or change fee as the penalty. (Lean: `declineOffer`)
+
+**Sources:** [EASD guide, Seller Follow-up Actions](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849094) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

@@ -10,7 +10,7 @@ reaches a final delivery status, then recognized as revenue, refunded or kept.
 The sources tie billing and revenue to delivery without saying which final
 statuses count, so the model takes the answers as parameters.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Accounting/Books.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accounting/Books.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Accounting/Books.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accounting/Books.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Account
 **User Story:** As an airline, I want providers to bill me only for what they have delivered, so that I never pay a provider for a service the customer did not receive.
 
 **Rule:** IF a service provider bills the ORA for a service before it has been delivered or consumed THEN THE SYSTEM SHALL refuse the bill unless a bilateral agreement allows earlier billing. (Lean: `acceptBill`)
+
+**Sources:** [IATA Resolution 797](https://www.iata.org/contentassets/72cbd60393ff42b5975d90ce9e049a7d/oneorder-resolution-797.pdf) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -36,6 +40,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Account
 **User Story:** As a revenue accountant, I want revenue recognized only when a service reaches a final status, and every payment accounted for, so that the books of each order balance.
 
 **Rule:** THE SYSTEM SHALL hold the amount paid for a service as a liability until the service reaches a final delivery status, and only then recognize it as revenue. (Lean: `bookStep`)
+
+**Sources:** [Order Accounting, Service Consumption](https://standards.atlassian.net/wiki/spaces/OA/pages/579272705) (standard); [Order Accounting, Customer requests a cancellation to paid Order or OrderItems](https://standards.atlassian.net/wiki/spaces/OA/pages/844333086) (standard); [Order Accounting, Customer requests a cancellation to paid Order or OrderItems resulting in Partial Amount Refunded with a Forfeited amount and a penalty with reporting to Accounting](https://standards.atlassian.net/wiki/spaces/OA/pages/844333143) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

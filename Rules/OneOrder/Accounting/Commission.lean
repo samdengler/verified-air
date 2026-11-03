@@ -95,7 +95,7 @@ model adds them.  How a percentage is rounded is a reading of the guide
 whether a commission subject to consumption tax is stated gross or net of that
 tax, are left to the amounts the airline states.  The result is the total, or
 {lean}`none` when the currencies differ. -/
-@[ears "ONE-801"]
+@[ears "ONE-801", source "easd-commission-and-margin"]
 def commissionOwed (r : Rounding) (c : Currency) (cs : List Commission) : Option Money :=
   if cs.all (fun x => (x.terms.value r).currency == c) then
     some ⟨(cs.map fun x => (x.terms.value r).amount).sum, c⟩
@@ -232,7 +232,8 @@ The standard defines the net clearance amount only as what the two parties
 agreed; the formulas come from the worked examples.  A refund is cleared by
 {name}`refundClearance`, and how much commission it recalls is a reading of
 the sources ({name}`RecallReading`). -/
-@[ears "ONE-802"]
+@[ears "ONE-802",
+  source "swo-request-for-clearance armi-paycmt swo-enhanced-and-simplified-distribution swo-settlement"]
 def clearancesFor (p : PaymentCommitment) : List ClearanceLeg :=
   match p.collector, p.handling with
   | .seller, .netted => [⟨.seller, .ora, (p.amount : Int) - p.commission⟩]

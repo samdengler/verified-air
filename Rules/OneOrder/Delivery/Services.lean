@@ -53,7 +53,7 @@ payment time limit.  A successful payment moves a CONFIRMED service to READY
 TO PROCEED, a move of the table.  Accounting keeps its own record of the final
 status it is told about and changes no service.  The result is the service
 afterwards. -/
-@[ears "ONE-105"]
+@[ears "ONE-105", source "easd-order model-consistency"]
 def endWith (m : MoveReading) (e : DeliveryEvent) (st : ServiceStatus) (s : Service) : Service :=
   match nextDelivery m e s with
   | some d => { s with status := st, delivery := d }

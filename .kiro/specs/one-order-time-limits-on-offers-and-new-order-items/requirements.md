@@ -13,7 +13,7 @@ them as parameters: whether a guarantee still holds at the instant it ends,
 what happens when an offer is accepted after a price guarantee has lapsed, and
 which form of payment time limit applies when an offer item states two.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/TimeLimits.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Offers/TimeLimits.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/TimeLimits.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Offers/TimeLimits.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -22,6 +22,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/
 **User Story:** As an airline, I want an offer's guarantees to end when the offer expires, so that I never stand behind a price or a seat for an offer that can no longer be accepted.
 
 **Rule:** WHILE no order has been created from an offer THE SYSTEM SHALL treat an offer item's price and inventory as guaranteed only until both the item's guarantee time limit and the offer's expiry. (Lean: `guaranteesAt`)
+
+**Sources:** [EASD guide, Time Limits](https://standards.atlassian.net/wiki/spaces/EASD/pages/574423066/Time+Limits) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -55,6 +59,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/
 **User Story:** As an airline, I want each new order item to start with the payment time limit and price guarantee its offer item promised, so that the customer gets the time to pay and the price the offer stated.
 
 **Rule:** WHEN a customer accepts an offer whose items carry time limits THE SYSTEM SHALL create the order as ONE-001 does and give each order item its payment time limit and price guarantee from its offer item. (Lean: `createOrder`)
+
+**Sources:** [EASD guide, Time Limits](https://standards.atlassian.net/wiki/spaces/EASD/pages/574423066/Time+Limits) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

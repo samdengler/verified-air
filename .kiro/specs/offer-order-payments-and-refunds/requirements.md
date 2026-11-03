@@ -6,7 +6,7 @@
 
 Money received against an order, and money returned against a payment.
 
-These requirements are generated from the Lean model in [`Rules/OfferOrder/Payment.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OfferOrder/Payment.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OfferOrder/Payment.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OfferOrder/Payment.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -15,6 +15,10 @@ These requirements are generated from the Lean model in [`Rules/OfferOrder/Payme
 **User Story:** As a customer service agent, I want each refund checked against the payment it is made against, so that a customer is never refunded more than they paid.
 
 **Rule:** WHEN a refund is requested against a payment THE SYSTEM SHALL accept it only if the refund amount does not exceed that payment's amount. (Lean: `acceptRefund`)
+
+**Sources:** [The pilot slice, simplified and invented for the proof of concept](https://github.com/samdengler/verified-air/blob/main/README.md) (modeller)
+
+**Confirmation:** Not confirmed. The modeller wrote this rule where no source states it.
 
 #### Acceptance Criteria
 

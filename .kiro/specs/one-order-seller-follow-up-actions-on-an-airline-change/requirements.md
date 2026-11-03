@@ -14,7 +14,7 @@ sources: what applies when a time limit passes and no consequence is stated,
 and whether contacting the airline, which happens outside the order, is
 recorded as the seller's answer.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/AirlineChange/FollowUp.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/AirlineChange/FollowUp.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/AirlineChange/FollowUp.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/AirlineChange/FollowUp.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -23,6 +23,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Airline
 **User Story:** As a seller, I want each change notice to show whether it waits for me, what I answered, or what the airline did when I did not answer, so that I can tell the customer where their trip stands.
 
 **Rule:** WHEN an airline change notice offers follow-up actions THE SYSTEM SHALL keep them pending until the seller answers with one of them or a consequence of inaction applies. (Lean: `resolve`)
+
+**Sources:** [EASD guide, Seller Follow-up Actions](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849094) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -56,6 +60,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Airline
 **User Story:** As a seller, I want to know what happens if I do not answer a change notice in time, so that the customer is not surprised by an outcome nobody chose.
 
 **Rule:** WHEN a time limit of a change notice passes and the seller has not answered THE SYSTEM SHALL apply the consequence of inaction of the follow-up action whose time limit passed first. (Lean: `consequenceAt`)
+
+**Sources:** [EASD guide, Seller Follow-up Actions](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849094) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

@@ -85,7 +85,7 @@ The bills are checked against the services' delivery statuses when they
 arrive.  Which statuses count as delivered or consumed is a reading of the
 sources ({name}`ConsumptionReading`).  The result says whether the bill is
 accepted. -/
-@[ears "ONE-808"]
+@[ears "ONE-808", source "iata-r797"]
 def acceptBill (c : ConsumptionReading) (agreement : String → Bool) (services : List ProvidedService)
     (billed : List Bill) (b : Bill) : Bool :=
   match services.find? (·.service.id == b.serviceId) with
@@ -224,7 +224,7 @@ amounts to accounting but state no balance, and do not say whether the
 amounts of a cancellation must add up to what was paid; that is a reading too
 ({name}`CancelCheck`).  The result is the books afterwards, or {lean}`none`
 when the event is refused. -/
-@[ears "ONE-809"]
+@[ears "ONE-809", source "oa-service-consumption oa-paid-cancellation oa-partial-refund-penalty"]
 def bookStep (r : RevenueReading) (k : CancelCheck) (b : ServiceBooks) :
     BookEvent → Option ServiceBooks
   | .pay x => if isFinal b.delivery then none else some { b with paid := b.paid + x }

@@ -103,7 +103,7 @@ returned a second time.  A service that the delivery status table does not let
 be removed, such as one still REQUESTED, one UNABLE TO DELIVER or one already
 DELIVERED, stays as it was ({name}`Delivery.endWith`); while it is live, its
 item is priced. -/
-@[ears "ONE-203"]
+@[ears "ONE-203", source "easd-cancellation-of-order-items armi-ordca2"]
 def requestCancellation (m : MoveReading) (r : ExcessPenalty) (o : Order)
     (payments : List Rules.OfferOrder.Payment) (t : CancelTerms) : CancelOutcome :=
   if Rules.OfferOrder.totalPaid payments o.id = 0 then .cancelled (cancelDirect m o)

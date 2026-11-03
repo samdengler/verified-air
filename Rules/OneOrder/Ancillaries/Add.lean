@@ -73,7 +73,7 @@ Which kinds are flight related is the reading's.  The last criterion asks
 whether the rule holds for the life of the order or only when the ancillary
 is bought; it is checked against the change rule for a paid change
 ({name}`Rules.OneOrder.Change.changeItem`). -/
-@[ears "ONE-602"]
+@[ears "ONE-602", source "easd-shop-for-ancillaries easd-add-ancillary"]
 def addServices (related : ServiceKind → Bool) (d : ServiceDetails) (o : Order)
     (items : List OrderItem) : Except AddRejection Order :=
   match missingFlight related d o items with

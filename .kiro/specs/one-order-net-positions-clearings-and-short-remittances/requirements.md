@@ -11,7 +11,7 @@ received.  The sources leave open how EasyPay clearances enter the netting,
 and give two different rules for splitting a short payment, so the model takes
 the answers as parameters.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Accounting/Clearing.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accounting/Clearing.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Accounting/Clearing.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accounting/Clearing.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -20,6 +20,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Account
 **User Story:** As a Clearance Manager, I want each party's clearances netted into one amount per remittance date, so that each party makes or receives one transfer and the transfers balance.
 
 **Rule:** WHEN the Clearance Manager nets the clearances for a remittance date THE SYSTEM SHALL make each party a settlement payee or a remittance payer for its net position. (Lean: `settlementRole`)
+
+**Sources:** [Settlement with Orders, Clearance Manager](https://standards.atlassian.net/wiki/spaces/SWO/pages/574259794) (standard); [Settlement with Orders, Remittance of Funds](https://standards.atlassian.net/wiki/spaces/SWO/pages/574718145) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -52,6 +56,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Account
 
 **Rule:** WHEN the Clearance Manager sends a clearing THE SYSTEM SHALL make its total, and the bank transfer for it, the amounts settled less the amounts clawed back. (Lean: `clearingTotal`)
 
+**Sources:** [Settlement with Orders, Financial and Accounting Systems](https://standards.atlassian.net/wiki/spaces/SWO/pages/574554300) (standard)
+
+**Confirmation:** Not confirmed yet.
+
 #### Acceptance Criteria
 
 1. WHEN the Clearance Manager sends a clearing to a settlement payee THE SYSTEM SHALL make its total the amounts settled for clearances marked Fully Settled, Partially Settled or Final Settlement, less the amounts clawed back.
@@ -77,6 +85,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Account
 **User Story:** As a settlement payee, I want a short remittance split by one known rule, so that I can tell which of my clearances were settled.
 
 **Rule:** WHEN a remittance payer pays short and the Clearance Manager has no credit line THE SYSTEM SHALL split what was paid across the payer's clearances. (Lean: `allocate`)
+
+**Sources:** [Settlement with Orders, Remittance of Funds](https://standards.atlassian.net/wiki/spaces/SWO/pages/574718145) (standard); [Settlement with Orders, Transfer of Funds](https://standards.atlassian.net/wiki/spaces/SWO/pages/574488849) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

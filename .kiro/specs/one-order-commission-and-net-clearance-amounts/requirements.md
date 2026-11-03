@@ -10,7 +10,7 @@ each payment.  The sources state the commission rule and show net clearance
 amounts only in worked examples.  The model reads the formulas from those
 examples and takes what the sources leave open as parameters.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Accounting/Commission.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accounting/Commission.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Accounting/Commission.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accounting/Commission.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Account
 **User Story:** As a seller, I want every commission on an order item worked out the same way and added up, so that I know what the airline owes me for the sale.
 
 **Rule:** THE SYSTEM SHALL owe the seller of an order item the total of the item's commissions, each a fixed amount or a percentage of a stated base amount. (Lean: `commissionOwed`)
+
+**Sources:** [EASD guide, Commission and Margin](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849050) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -38,6 +42,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Account
 **User Story:** As a seller, I want each payment cleared with the ORA by one rule, so that I receive my commission once and the airline receives the rest.
 
 **Rule:** WHEN a payment commitment is made THE SYSTEM SHALL state the clearances between the ORA and the seller for it, with their net clearance amounts. (Lean: `clearancesFor`)
+
+**Sources:** [Settlement with Orders, Request for Clearance](https://standards.atlassian.net/wiki/spaces/SWO/pages/574259760) (standard); [IATA capability PAYCMT](https://retailing.iata.org/armi/docs/PAYCMT/) (standard); [Settlement with Orders, Enhanced and Simplified Distribution](https://standards.atlassian.net/wiki/spaces/SWO/pages/574653091) (standard); [Settlement with Orders, Settlement](https://standards.atlassian.net/wiki/spaces/SWO/pages/574816478) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

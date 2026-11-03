@@ -8,7 +8,7 @@ The ONE Order way: each offer item becomes one order item, and each order item
 gets one service per passenger and flight segment, since an ordered service is
 for one passenger on one segment.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Accept.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accept.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Accept.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Accept.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -17,6 +17,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Accept.
 **User Story:** As an airline, I want each accepted offer item to become one order item with a service for every passenger and segment, so that each service can be delivered and accounted for on its own.
 
 **Rule:** WHEN a customer accepts an offer THE SYSTEM SHALL create an order with one order item for each offer item and one service for each passenger and flight segment of that item. (Lean: `accept`)
+
+**Sources:** [EASD guide, Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849062/Order) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

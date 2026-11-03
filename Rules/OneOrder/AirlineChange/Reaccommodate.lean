@@ -99,7 +99,7 @@ the delivery status table.  When the change takes effect is the reading's
 ({name}`ApplyAt`); under the reading where it waits for acceptance, applying
 it once the seller accepts is the same replacement, which this rule does not
 model. -/
-@[ears "ONE-705"]
+@[ears "ONE-705", source "easd-airline-notifies-seller"]
 def notifyChange (m : Delivery.MoveReading) (a : ApplyAt) (vo : VersionedOrder) (c : Reaccommodation) :
     Except ChangeRejection VersionedOrder :=
   match vo.order.items.find? (·.id = c.item) with

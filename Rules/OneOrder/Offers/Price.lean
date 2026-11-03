@@ -144,7 +144,8 @@ Acceptance criteria:
 
 Where the consumption tax not included comes from is a reading of the guide
 ({name}`ExcludedTax`). -/
-@[ears "ONE-506"]
+@[ears "ONE-506",
+  source "easd-currency-in-monetary-amounts easd-discounts easd-taxes-fees-and-charges"]
 def priceTotal (x : ExcludedTax) (p : PriceParts) : Except PriceRejection PriceTotal :=
   if p.amounts.any (·.currency ≠ p.beforeDiscount.currency) then .error .mixedCurrency
   else if p.beforeDiscount.amount < p.discount.amount then .error .discountAboveBase

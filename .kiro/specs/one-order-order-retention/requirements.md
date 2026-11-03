@@ -10,7 +10,7 @@ open, and for 7 days once every item has reached a final status.  It does not
 say how 13 months is counted on UTC instants, so the model takes the count as
 a parameter.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Creation/Retention.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Creation/Retention.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Creation/Retention.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Creation/Retention.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -19,6 +19,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Creatio
 **User Story:** As a seller, I want an order to stay retrievable while the customer can still use it, so that I can service the trip and any value it holds.
 
 **Rule:** THE SYSTEM SHALL keep an order accessible for 13 months from its creation and for 13 months from its first usage while it has an active item, and for 7 days after every item has reached a final status. (Lean: `mustKeep`)
+
+**Sources:** [IATA Resolution 797](https://www.iata.org/contentassets/72cbd60393ff42b5975d90ce9e049a7d/oneorder-resolution-797.pdf) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

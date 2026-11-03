@@ -185,7 +185,7 @@ amount.  The worked examples fit this formula, though the guide does not state
 it.  The penalty charged is the whole penalty, except when the penalty is
 larger than the refundable value: then it depends on the reading of the guide
 ({name}`ExcessPenalty`). -/
-@[ears "ONE-202"]
+@[ears "ONE-202", source "easd-cancellation-of-order-items easd-price-differentials"]
 def dueAmounts (r : ExcessPenalty) (q : ChangeQuote) : DueAmounts :=
   match q.handling with
   | .netted =>
@@ -234,7 +234,8 @@ Acceptance criteria:
 The due amounts come from {name}`dueAmounts`, except for a request to keep the
 value for later use, where the guide shows both amounts as zero
 ({name}`statedDue`). -/
-@[ears "ONE-201"]
+@[ears "ONE-201",
+  source "easd-modification-of-an-order easd-price-differentials easd-reusable-amount"]
 def priceDifferential (r : ExcessPenalty) (q : ChangeQuote) :
     Except QuoteRejection PriceDifferential :=
   if q.newPrice.currency ≠ q.oldPrice.currency ∨ q.penalty.currency ≠ q.oldPrice.currency ∨

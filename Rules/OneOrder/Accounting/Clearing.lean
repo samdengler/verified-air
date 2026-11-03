@@ -91,7 +91,7 @@ Acceptance criteria:
 
 How an EasyPay clearance enters the netting is a reading of the sources
 ({name}`EasyPayReading`).  The model nets one currency. -/
-@[ears "ONE-805"]
+@[ears "ONE-805", source "swo-clearance-manager swo-remittance-of-funds"]
 def settlementRole (r : EasyPayReading) (cs : List Clearance) (date : String) (p : Party) :
     SettlementRole :=
   let n := netPosition r cs date p
@@ -162,7 +162,7 @@ Acceptance criteria:
   settlement payee negative.
 
 The bank transfer is the total; the model does not separate the two. -/
-@[ears "ONE-806"]
+@[ears "ONE-806", source "swo-financial-and-accounting-systems"]
 def clearingTotal (dest : ClearingTo) (lines : List ClearingLine) : Int :=
   ((lines.filter (·.counts dest)).map (·.value)).sum
 
@@ -245,7 +245,7 @@ The clearances are listed in the order they were recorded, oldest first.  The
 page followed is a reading of the sources ({name}`AllocationReading`), and so
 is the rounding of a proportional share ({name}`Rounding`).  The result lists
 the amount settled on each clearance. -/
-@[ears "ONE-807"]
+@[ears "ONE-807", source "swo-remittance-of-funds swo-transfer-of-funds"]
 def allocate (a : AllocationReading) (rd : Rounding) (paid : Nat) (os : List Obligation) :
     List Nat :=
   match a with

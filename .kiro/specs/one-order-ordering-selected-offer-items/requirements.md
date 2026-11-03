@@ -9,7 +9,7 @@ may select from several offers.  The selection must include every item an
 offer marks mandatory; the other items are optional.  The request succeeds
 as a whole or is rejected as a whole.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Creation/Create.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Creation/Create.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Creation/Create.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Creation/Create.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -18,6 +18,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Creatio
 **User Story:** As a seller, I want to leave out the optional items of an offer, so that the customer pays only for what they chose.
 
 **Rule:** WHEN a seller selects items from an offer THE SYSTEM SHALL accept the selection only if it names items the offer holds and includes every item the offer marks mandatory. (Lean: `selectItems`)
+
+**Sources:** [IATA capability ORDWPM](https://retailing.iata.org/armi/docs/ORDWPM/) (standard); [ARMI, General Guidance](https://standards.atlassian.net/wiki/spaces/ARMI/pages/584318980/General+Guidance) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -47,6 +51,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Creatio
 **User Story:** As a customer, I want a trip I chose as a whole to be ordered as a whole, so that I never hold half of it.
 
 **Rule:** WHEN a seller sends a create request with selections from one or more offers THE SYSTEM SHALL check each selection and create one order from them, or reject the request. (Lean: `createOrder`)
+
+**Sources:** [EASD guide, Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/574849062/Order) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

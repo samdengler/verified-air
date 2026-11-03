@@ -12,7 +12,7 @@ how much of an item's price belongs to one of its flights, since the price is
 set per order item.  The model takes the refund as a parameter, a reading of
 the sources.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/AirlineChange/FlightCancel.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/AirlineChange/FlightCancel.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/AirlineChange/FlightCancel.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/AirlineChange/FlightCancel.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -21,6 +21,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Airline
 **User Story:** As a customer whose flight the airline cancelled, I want the cancelled services marked and their value returned, so that I do not pay for a flight that will not operate.
 
 **Rule:** WHEN the airline cancels a flight and does not re-accommodate the customer THE SYSTEM SHALL cancel every live service on that flight with delivery status UNABLE TO DELIVER. (Lean: `cancelFlight`)
+
+**Sources:** [EASD guide, Airline notifies Seller of changes to an Order](https://standards.atlassian.net/wiki/spaces/EASD/pages/815202352) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

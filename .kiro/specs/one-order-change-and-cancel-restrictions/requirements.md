@@ -13,7 +13,7 @@ The guide leaves two points open, so the model takes them as parameters:
 whether a rule's expiration date ends it, and which amount a refund marked full
 and also given a fixed amount returns.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/Restrictions.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Offers/Restrictions.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/Restrictions.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Offers/Restrictions.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -22,6 +22,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/
 **User Story:** As a seller, I want to know which change or cancel rule applies at any moment of the journey, so that I can tell the customer what a change costs and what a cancellation returns.
 
 **Rule:** WHEN a change or cancellation is asked for at an instant THE SYSTEM SHALL take as the rule in force the rule for that action and the journey's current stage with the latest effective date not after that instant. (Lean: `ruleInForce`)
+
+**Sources:** [EASD guide, Offer Restrictions](https://standards.atlassian.net/wiki/spaces/EASD/pages/574259692/Offer+Restrictions) (standard); [EASD guide, Offer Conditions and Restrictions](https://standards.atlassian.net/wiki/spaces/EASD/pages/574816307/Offer+Conditions+and+Restrictions) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 
@@ -56,6 +60,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/
 
 **Rule:** WHEN a customer asks for a voluntary change THE SYSTEM SHALL refuse it if the rule in force forbids it, and otherwise quote it with the rule's fee as the penalty. (Lean: `voluntaryChange`)
 
+**Sources:** [EASD guide, Offer Restrictions](https://standards.atlassian.net/wiki/spaces/EASD/pages/574259692/Offer+Restrictions) (standard)
+
+**Confirmation:** Not confirmed yet.
+
 #### Acceptance Criteria
 
 1. IF the rule in force forbids a change of the kind asked for THEN THE SYSTEM SHALL refuse the change.
@@ -72,6 +80,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Offers/
 **User Story:** As a customer, I want a cancellation to return what the rule in force promised, so that I know what I get back before I cancel.
 
 **Rule:** WHEN a customer cancels an unused order item voluntarily THE SYSTEM SHALL return what the cancel rule in force gives: nothing if it forbids cancellation, and otherwise a full or a fixed refund. (Lean: `cancellationRefund`)
+
+**Sources:** [EASD guide, Offer Restrictions](https://standards.atlassian.net/wiki/spaces/EASD/pages/574259692/Offer+Restrictions) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

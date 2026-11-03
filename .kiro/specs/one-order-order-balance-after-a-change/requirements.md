@@ -11,7 +11,7 @@ an order's values against its payments and refunds, and gives no equation.
 The model states the equation the worked examples fit and checks whether a
 change keeps it.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Change/Balance.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Change/Balance.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Change/Balance.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Change/Balance.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -20,6 +20,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Change/
 **User Story:** As a revenue accountant, I want every settled change recorded on the order, so that I can reconcile the order's items against its payments and refunds.
 
 **Rule:** WHEN a seller settles a change or cancellation offer THE SYSTEM SHALL record on the order what the customer paid, what the airline returned, the penalty and the forfeited amount. (Lean: `settle`)
+
+**Sources:** [IATA capability ORDPEN](https://retailing.iata.org/armi/docs/ORDPEN/) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

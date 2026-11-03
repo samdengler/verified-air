@@ -6,6 +6,8 @@ Each folder is a requirement spec with one `requirements.md`, generated from the
 
 253 acceptance criteria: 184 proven, 8 example only, 60 open, 1 not checked.
 
+55 rules: 0 confirmed, 0 confirmed but out of date, 52 written from a source, 3 assumed by the modeller.
+
 | Spec | Requirement | User story | Criteria | Proven | Example only | Open | Not checked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Creating an order from an offer](one-order-creating-an-order-from-an-offer/requirements.md) | ONE-001 | As an airline, I want each accepted offer item to become one order item with a service for every passenger and segment, so that each service can be delivered and accounted for on its own. | 5 | 5 | 0 | 0 | 0 |
@@ -322,4 +324,4 @@ Each folder is a requirement spec with one `requirements.md`, generated from the
 | OO-003.1 | WHEN a refund is requested against a payment THE SYSTEM SHALL accept it only if it names that payment and its amount does not exceed the payment's amount. | not checked | nothing in the build checks this yet |
 | OO-003.2 | THE SYSTEM SHALL not refund more against an order than was paid for it. | open | open theorem `refunds_le_payments`; counterexample `doubleRefund` |
 
-The same rows are in [`ears-criteria.csv`](https://samdengler.github.io/verified-air/ears-criteria.csv), and one row per rule is in [`ears.csv`](https://samdengler.github.io/verified-air/ears.csv).
+The same rows are in [`ears-criteria.csv`](https://samdengler.github.io/verified-air/ears-criteria.csv), and one row per rule is in [`ears.csv`](https://samdengler.github.io/verified-air/ears.csv). Each rule's sources and confirmation are in [`provenance.csv`](https://samdengler.github.io/verified-air/provenance.csv).

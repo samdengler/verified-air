@@ -83,7 +83,7 @@ segment.  How much is refunded is the reading's ({name}`FlightRefund`).  The
 delivery status table has no move to UNABLE TO DELIVER from REQUESTED, IN
 PROGRESS or SUSPENDED, so a service in one of those statuses keeps it
 ({name}`Delivery.endWith`). -/
-@[ears "ONE-704"]
+@[ears "ONE-704", source "easd-airline-notifies-seller"]
 def cancelFlight (m : MoveReading) (r : FlightRefund) (seg : String) (o : Order) : FlightCancellation where
   order := { o with items := o.items.map fun i => { i with services := i.services.map (cancelOnFlight m seg) } }
   refunds := (o.items.filter (flies seg)).map fun i => (i.id, ⟨r.refund i seg, i.price.currency⟩)

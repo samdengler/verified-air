@@ -111,7 +111,7 @@ Acceptance criteria:
 Whether an IN PROGRESS service can be cancelled or end NOT CLAIMED is left to
 the reading.  The result is the new status, or {lean}`none` when the event
 does not end the service. -/
-@[ears "ONE-102"]
+@[ears "ONE-102", source "easd-order"]
 def endService (m : MoveReading) : DeliveryStatus → DeliveryEvent → Option DeliveryStatus
   | .confirmed, e | .readyToProceed, e | .readyToDeliver, e => endBeforeDelivery e
   | .inProgress, .remove => if m.cancelInProgress then some .removed else none
@@ -151,7 +151,7 @@ DELIVERED.  The ways a service ends without delivery are in
 and the return from UNABLE TO DELIVER to READY TO PROCEED are left to the
 reading.  The result is the new status, or {lean}`none` when the event is
 refused. -/
-@[ears "ONE-101"]
+@[ears "ONE-101", source "easd-order"]
 def move (m : MoveReading) : DeliveryStatus → DeliveryEvent → Option DeliveryStatus
   | .requested, .confirm => some .confirmed
   | .confirmed, .pay => some .readyToProceed
@@ -185,7 +185,7 @@ Acceptance criteria:
 
 These are the five statuses the accounting message names as final.  UNABLE TO
 DELIVER is not among them, and the sources do not say whether it is final. -/
-@[ears "ONE-103"]
+@[ears "ONE-103", source "armi-ordsts easd-order"]
 def isFinal : DeliveryStatus → Bool
   | .delivered | .removed | .expired | .notClaimed | .failedToDeliver => true
   | _ => false
@@ -229,7 +229,7 @@ The sources say that any status that is not final can be suspended, and that
 REMOVED HOLD VALUE moves only to REMOVED.  The model follows the second for
 REMOVED HOLD VALUE.  Every other event follows {name}`move`.  The result is
 the new record, or {lean}`none` when the event is refused. -/
-@[ears "ONE-104"]
+@[ears "ONE-104", source "easd-order"]
 def step (m : MoveReading) : DeliveryRecord → DeliveryEvent → Option DeliveryRecord
   | ⟨.suspended, before⟩, .resume => before.map fun s => ⟨s, none⟩
   | ⟨.suspended, _⟩, .remove => some ⟨.removed, none⟩

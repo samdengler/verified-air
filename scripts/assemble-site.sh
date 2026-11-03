@@ -70,7 +70,7 @@ cp -r blueprint/web/. site/blueprint/
 python3 scripts/site_nav.py site/blueprint
 optional blueprint/print/print.pdf site/blueprint/print.pdf
 cp -r .kiro/specs site/specs
-cp build/ears.md build/ears.csv build/ears-criteria.csv build/status.json site/
+cp build/ears.md build/ears.csv build/ears-criteria.csv build/provenance.csv build/status.json site/
 optional build/oracle/vectors.jsonl site/conformance-vectors.jsonl
 mkdir -p site/try
 optional build/try/rules.wasm site/try/rules.wasm

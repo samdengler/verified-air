@@ -89,7 +89,7 @@ it so: after the change, the transferred copies are still READY TO PROCEED.  A
 service the change does not keep is removed through the delivery status table
 ({name}`Delivery.endWith`), so a service already DELIVERED, such as an
 outbound flight already flown, stays as it was. -/
-@[ears "ONE-204"]
+@[ears "ONE-204", source "easd-modification-of-an-order"]
 def changeItem (m : MoveReading) (o : Order) (c : ItemChange) : Except ChangeRejection Order :=
   match o.items.find? (·.id = c.item) with
   | none => .error .unknownItem

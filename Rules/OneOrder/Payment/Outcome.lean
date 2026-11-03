@@ -44,7 +44,7 @@ Acceptance criteria:
 
 The guide states these effects for redirected payments.  The model applies
 them to a payment of any method. -/
-@[ears "ONE-305"]
+@[ears "ONE-305", source "easd-pay-offline-using-redirection"]
 def applyOutcome (p : Transaction) (items : List PayableItem) : List PayableItem :=
   if p.status = .successful then
     items.map fun pi => if pi.item.id ∈ p.covers then pi.markPaid else pi

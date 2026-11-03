@@ -54,6 +54,42 @@ def load_status():
     return {d["name"]: d for d in data["declarations"]}
 
 
+def load_sources():
+    """The sources the rules may cite, by key, as the status executable lists them."""
+    return {s["key"]: s for s in json.loads(STATUS.read_text())["sources"]}
+
+
+# How a confirmation was made, in words.
+METHOD_TEXT = {"sme": "subject matter expert", "data": "production data", "crosscheck": "independent source"}
+
+# A rule's provenance, as the status executable computes it, in words.
+PROVENANCE_TEXT = {
+    "confirmed": "confirmed",
+    "out of date": "confirmed but out of date",
+    "sourced": "written from a source",
+    "assumed": "assumed by the modeller",
+}
+
+
+def rule_sources(d, sources):
+    """The sources a rule names with @[source], in the order it names them."""
+    return [sources[k] for k in d.get("sources", [])]
+
+
+def confirmation_text(d):
+    """One or two sentences on whether anyone outside the model confirmed a rule."""
+    c = d.get("confirmation")
+    p = d.get("provenance")
+    if c:
+        said = f"Confirmed on {c['date']} by {c['who']} ({METHOD_TEXT[c['method']]}): {c['note'].rstrip('.')}."
+        if p == "out of date":
+            said += " The rule changed after that, so the confirmation is out of date."
+        return said
+    if p == "assumed":
+        return "Not confirmed. The modeller wrote this rule where no source states it."
+    return "Not confirmed yet."
+
+
 def ears_rows(decls):
     """One row per declaration with an EARS statement, ordered by ID then name."""
     rows = [d for d in decls.values() if d.get("ears")]
@@ -487,7 +523,7 @@ def chapter_tag(kind, d, ears_id):
     return tag if home == ears_id else f"{tag}-in-{ears_id.lower()}"
 
 
-def render_requirement(rule, decls, titles):
+def render_requirement(rule, decls, titles, sources):
     ears_id = rule["earsId"]
     prefix = ears_id + "."
     def checks_this(d):
@@ -507,8 +543,11 @@ def render_requirement(rule, decls, titles):
               for s, n in sorted(counts.items(), key=lambda x: list(CRITERION_TEXT).index(x[0]))]
     summary = parts_[0] if len(parts_) == 1 else ", ".join(parts_[:-1]) + " and " + parts_[-1]
     parts = [VERSO_HEADER, f'#doc (Manual) "{title}" =>', "%%%", f'tag := "{ears_id.lower()}"', "%%%", ""]
+    links = ", ".join(f"[{verso_escape(s['title'])}]({s['url']})" for s in rule_sources(rule, sources))
     parts += [
         f"Requirement {ears_id}. Of its {len(criteria)} acceptance criteria, {summary}.",
+        "",
+        f"Sources: {links}. {verso_escape(confirmation_text(rule))}",
         "",
         f'{{docstring {rule["name"]} +hideStructureConstructor (label := "rule")}}',
         "",
@@ -670,7 +709,8 @@ def render_front(decls, titles):
 
 def render_requirements(decls):
     titles = blueprint_titles()
-    modules = [render_requirement(r, decls, titles) for r in ears_rows(decls)]
+    sources = load_sources()
+    modules = [render_requirement(r, decls, titles, sources) for r in ears_rows(decls)]
     render_front(decls, titles)
     render_questions(decls, titles)
     modules.append("Questions")
@@ -800,7 +840,19 @@ def spec_dirs(decls):
     return sorted(out, key=lambda g: g[5][0]["earsId"])
 
 
-def render_spec(folder, source, title, intro, rules, decls):
+SPEC_PROVENANCE_NOTE = (
+    " *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside "
+    "the model has confirmed the rule as written."
+)
+
+
+def spec_provenance_lines(d, sources):
+    """The Sources and Confirmation lines under a requirement's rule in its spec."""
+    links = "; ".join(f"[{s['title']}]({s['url']}) ({s['kind']})" for s in rule_sources(d, sources))
+    return ["", f"**Sources:** {links}", "", f"**Confirmation:** {confirmation_text(d)}"]
+
+
+def render_spec(folder, source, title, intro, rules, decls, sources):
     lines = [
         f"{SPEC_MARK} from {source}. Edit the docstrings there, not this file. -->",
         "",
@@ -813,7 +865,8 @@ def render_spec(folder, source, title, intro, rules, decls):
         f"These requirements are generated from the Lean model in [`{source}`]({REPO}/{source}). "
         "Each acceptance criterion carries the status the build computed for it: *proven* means a "
         "theorem the build checked, *example only* means a computed example, *open* means a theorem "
-        "the build could not prove, and *not checked* means no theorem or example covers it yet.",
+        "the build could not prove, and *not checked* means no theorem or example covers it yet."
+        + SPEC_PROVENANCE_NOTE,
         "",
         "## Requirements",
         "",
@@ -826,6 +879,7 @@ def render_spec(folder, source, title, intro, rules, decls):
             f"**User Story:** {d['story']}",
             "",
             f"**Rule:** {kiro_ears(d['ears'])} (Lean: `{rule}`)",
+        ] + spec_provenance_lines(d, sources) + [
             "",
             "#### Acceptance Criteria",
             "",
@@ -864,6 +918,8 @@ def render_specs_index(groups, decls):
         f"{len(criteria)} acceptance criteria: {counts['proven']} proven, {counts['example']} example only, "
         f"{counts['open']} open, {counts['not checked']} not checked.",
         "",
+        provenance_summary([d for *_, rules in groups for d in rules]),
+        "",
         "| Spec | Requirement | User story | Criteria | Proven | Example only | Open | Not checked |",
         "| --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
@@ -880,10 +936,20 @@ def render_specs_index(groups, decls):
     lines += [
         "",
         "The same rows are in [`ears-criteria.csv`](https://samdengler.github.io/verified-air/ears-criteria.csv), "
-        "and one row per rule is in [`ears.csv`](https://samdengler.github.io/verified-air/ears.csv).",
+        "and one row per rule is in [`ears.csv`](https://samdengler.github.io/verified-air/ears.csv). "
+        "Each rule's sources and confirmation are in "
+        "[`provenance.csv`](https://samdengler.github.io/verified-air/provenance.csv).",
         "",
     ]
     (SPECS / "README.md").write_text("\n".join(lines))
+
+
+def provenance_summary(rules):
+    """One sentence counting the rules by provenance."""
+    n = {p: sum(d.get("provenance") == p for d in rules) for p in PROVENANCE_TEXT}
+    return (f"{len(rules)} rules: {n['confirmed']} {PROVENANCE_TEXT['confirmed']}, "
+            f"{n['out of date']} {PROVENANCE_TEXT['out of date']}, {n['sourced']} {PROVENANCE_TEXT['sourced']}, "
+            f"{n['assumed']} {PROVENANCE_TEXT['assumed']}.")
 
 
 def render_specs(decls):
@@ -895,8 +961,9 @@ def render_specs(decls):
             if f.parent.name not in written and f.read_text().startswith(SPEC_MARK):
                 f.unlink()
                 f.parent.rmdir()
+    sources = load_sources()
     for folder, _, source, title, intro, rules in groups:
-        render_spec(folder, source, title, intro, rules, decls)
+        render_spec(folder, source, title, intro, rules, decls, sources)
     render_specs_index(groups, decls)
 
 

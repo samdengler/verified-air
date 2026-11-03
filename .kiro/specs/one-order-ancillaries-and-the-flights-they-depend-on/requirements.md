@@ -12,7 +12,7 @@ flight service by reference; the worked examples for adding an ancillary link
 bags and seats to the flight only through the shared passenger and segment.
 The model takes the link as a parameter, a reading of the sources.
 
-These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Basic.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Basic.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet.
+These requirements are generated from the Lean model in [`Rules/OneOrder/Ancillaries/Basic.lean`](https://github.com/samdengler/verified-air/blob/main/Rules/OneOrder/Ancillaries/Basic.lean). Each acceptance criterion carries the status the build computed for it: *proven* means a theorem the build checked, *example only* means a computed example, *open* means a theorem the build could not prove, and *not checked* means no theorem or example covers it yet. *Sources* lists the pages each rule was written from, and *Confirmation* says whether anyone outside the model has confirmed the rule as written.
 
 ## Requirements
 
@@ -21,6 +21,10 @@ These requirements are generated from the Lean model in [`Rules/OneOrder/Ancilla
 **User Story:** As an airline, I want to know which bags, seats and meals depend on a flight, so that a change to the flight reaches every service it affects.
 
 **Rule:** THE SYSTEM SHALL count as dependent on a flight service the ancillary services of the order that the link between dependent and parent ties to it. (Lean: `dependents`)
+
+**Sources:** [EASD guide, Inform of Impacted Dependent Services](https://standards.atlassian.net/wiki/spaces/EASD/pages/672825400) (standard); [EASD guide, Customer Adds an Ancillary to Existing Order - Service list](https://standards.atlassian.net/wiki/spaces/EASD/pages/842301531) (standard)
+
+**Confirmation:** Not confirmed yet.
 
 #### Acceptance Criteria
 

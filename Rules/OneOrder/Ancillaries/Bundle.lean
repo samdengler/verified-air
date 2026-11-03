@@ -78,7 +78,7 @@ cancellation page suggests, is not modelled.  A service is removed through the
 delivery status table ({name}`Delivery.endWith`), and a named service the
 table does not let be removed, such as one still REQUESTED, stays as it was
 and is not paid back. -/
-@[ears "ONE-607"]
+@[ears "ONE-607", source "easd-cancellation-of-order-items easd-bundles"]
 def removeFromBundle (m : MoveReading) (sh : BundleShare) (o : Order) (item : String)
     (ids : List String) : Except BundleRejection (Order × Money) :=
   match o.items.find? (·.id == item) with
