@@ -935,10 +935,10 @@ def render_specs_index(groups, decls):
         lines.append(f"| {c['id']} | {kiro_ears(c['ears'])} | {CRITERION_TEXT[c['status']]} | {checked_by_text(c, decls)} |")
     lines += [
         "",
-        "The same rows are in [`ears-criteria.csv`](https://samdengler.github.io/verified-air/ears-criteria.csv), "
-        "and one row per rule is in [`ears.csv`](https://samdengler.github.io/verified-air/ears.csv). "
+        "The same rows are in [`ears-criteria.csv`](https://verified.dengler.io/ears-criteria.csv), "
+        "and one row per rule is in [`ears.csv`](https://verified.dengler.io/ears.csv). "
         "Each rule's sources and confirmation are in "
-        "[`provenance.csv`](https://samdengler.github.io/verified-air/provenance.csv).",
+        "[`provenance.csv`](https://verified.dengler.io/provenance.csv).",
         "",
     ]
     (SPECS / "README.md").write_text("\n".join(lines))

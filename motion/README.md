@@ -1,6 +1,6 @@
 # Motion piece: how the graph grew
 
-[![The last frame of the film of the graph growing](out/history-poster.jpg)](https://samdengler.github.io/verified-air/graph/?view=history)
+[![The last frame of the film of the graph growing](out/history-poster.jpg)](https://verified.dengler.io/graph/?view=history)
 
 1. The pilot (0:00)
 2. First survey (0:08)
@@ -14,7 +14,7 @@
 
 *The film: the pilot, two surveys of IATA's public pages, each area written in Lean, an independent review of the model and its fixes, and where the model stands. Click the last frame to play the film on the site, one step at a time.*
 
-A film of the dependency graph growing over the milestones in [`history/`](../history/), made with [Remotion](https://www.remotion.dev): a React composition that is rendered frame by frame in headless Chrome and encoded to MP4. It follows the storyboard in [`docs/motion-brief.md`](../docs/motion-brief.md). The History tab of the site's [Explore page](https://samdengler.github.io/verified-air/graph/?view=history) shows it above the milestone player and plays it one step at a time.
+A film of the dependency graph growing over the milestones in [`history/`](../history/), made with [Remotion](https://www.remotion.dev): a React composition that is rendered frame by frame in headless Chrome and encoded to MP4. It follows the storyboard in [`docs/motion-brief.md`](../docs/motion-brief.md). The History tab of the site's [Explore page](https://verified.dengler.io/graph/?view=history) shows it above the milestone player and plays it one step at a time.
 
 ## Steps
 

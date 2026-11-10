@@ -14,24 +14,24 @@ The rules, prices and data are simplified and invented. Where a rule is
 taken from IATA's public documentation, it is described in our own words
 with a link to the source page; IATA owns the standard and its documentation.
 
-- Home page, with the model's status and a guide to the site: <https://samdengler.github.io/verified-air/>
-- Progress page, for business readers: <https://samdengler.github.io/verified-air/progress/>
-- Review document: <https://samdengler.github.io/verified-air/review/>
+- Home page, with the model's status and a guide to the site: <https://verified.dengler.io/>
+- Progress page, for business readers: <https://verified.dengler.io/progress/>
+- Review document: <https://verified.dengler.io/review/>
 - Requirement specs, criteria in EARS, in Kiro's format: [`.kiro/specs/`](.kiro/specs/)
-- Explore page, with the dependency graph: <https://samdengler.github.io/verified-air/graph/>
-- A five-step tour for business readers: <https://samdengler.github.io/verified-air/tour/>
+- Explore page, with the dependency graph: <https://verified.dengler.io/graph/>
+- A five-step tour for business readers: <https://verified.dengler.io/tour/>
 - Verified Airline, a fictional airline's site written from the model, in its own repository: <https://air.dengler.io/>
 
 ## Where to start
 
 | You want to | Read |
 | --- | --- |
-| See at a glance what is proven, what is open, and what needs a business decision | The [home page](https://samdengler.github.io/verified-air/), then the [progress page](https://samdengler.github.io/verified-air/progress/) for every card |
-| Understand the rules and the open question, without reading code | The [review document](https://samdengler.github.io/verified-air/review/): one chapter per requirement, with a try-it panel for delivery and refunds, then Open Questions |
+| See at a glance what is proven, what is open, and what needs a business decision | The [home page](https://verified.dengler.io/), then the [progress page](https://verified.dengler.io/progress/) for every card |
+| Understand the rules and the open question, without reading code | The [review document](https://verified.dengler.io/review/): one chapter per requirement, with a try-it panel for delivery and refunds, then Open Questions |
 | Use the requirements in a spec-driven flow | [`.kiro/specs/README.md`](.kiro/specs/README.md), then one `requirements.md` per area |
-| Get the model explained in five steps | The [tour](https://samdengler.github.io/verified-air/tour/) |
+| Get the model explained in five steps | The [tour](https://verified.dengler.io/tour/) |
 | See the rules as an airline's customer policies | The [Verified Airline site](https://air.dengler.io/): fares, payment, changes, refunds, extras and schedule changes in a traveler's words. Show the Lean model to see the requirement behind each answer; [Verified Airline, the airline demo](#verified-airline-the-airline-demo) explains how this repository feeds it |
-| See which rules rest on which definitions, and what is proven | The [Explore page](https://samdengler.github.io/verified-air/graph/): a map of the areas, a matrix of the dependencies between them, every card, the history, and any card's neighbourhood. Each area has a summary page under `/area/`. The blueprint's own graph is at [`/blueprint/dep_graph_document.html`](https://samdengler.github.io/verified-air/blueprint/dep_graph_document.html) |
+| See which rules rest on which definitions, and what is proven | The [Explore page](https://verified.dengler.io/graph/): a map of the areas, a matrix of the dependencies between them, every card, the history, and any card's neighbourhood. Each area has a summary page under `/area/`. The blueprint's own graph is at [`/blueprint/dep_graph_document.html`](https://verified.dengler.io/blueprint/dep_graph_document.html) |
 | See which ONE Order rules are candidates for the model next | [`docs/one-order-survey.md`](docs/one-order-survey.md) |
 | See how much of ONE Order the model covers | [`docs/one-order-coverage.md`](docs/one-order-coverage.md): IATA's 63 business capabilities, each marked in Lean, candidate or not started |
 | Check a service's code against the model | [Checking an implementation against the model](#checking-an-implementation-against-the-model), then [`impl/java`](impl/java/) and [`impl/rust`](impl/rust/) |
@@ -143,7 +143,7 @@ running and ask it about each generated input.
 
 The conformance vectors are the oracle's answers to a fixed list of requests,
 saved as a file:
-<https://samdengler.github.io/verified-air/conformance-vectors.jsonl>.
+<https://verified.dengler.io/conformance-vectors.jsonl>.
 Each line is one case: a name, a request to one of the rules, and the model's
 answer. For example, shortened:
 
@@ -344,7 +344,7 @@ notice does not permit reproducing its text, so the survey quotes nothing and
 links to each page.
 
 The candidates are also nodes in the second chapter of the
-[blueprint](https://samdengler.github.io/verified-air/blueprint/),
+[blueprint](https://verified.dengler.io/blueprint/),
 so they appear on the dependency graph before any of them is written in Lean.
 The 12 vague or silent ones are marked not ready and have an orange border; the
 open point in each says what the business has to decide. The git tag
@@ -378,8 +378,8 @@ a dashboard, or a script.
 
 | File | One row per | Columns |
 | --- | --- | --- |
-| [`ears.csv`](https://samdengler.github.io/verified-air/ears.csv) | rule | ID, EARS statement, Lean declaration, status, theorems that prove it |
-| [`ears-criteria.csv`](https://samdengler.github.io/verified-air/ears-criteria.csv) | acceptance criterion | ID, parent rule, EARS statement, EARS template, status, theorems and examples that check it |
+| [`ears.csv`](https://verified.dengler.io/ears.csv) | rule | ID, EARS statement, Lean declaration, status, theorems that prove it |
+| [`ears-criteria.csv`](https://verified.dengler.io/ears-criteria.csv) | acceptance criterion | ID, parent rule, EARS statement, EARS template, status, theorems and examples that check it |
 
 Both are rebuilt on every push at fixed URLs, and their IDs never renumber, so
 a tool can pull them on a schedule. Because each row carries a computed status,
@@ -571,17 +571,17 @@ Checked on 2026-10-24 against the plan's acceptance criteria. CI run:
 
 **Pages URLs.**
 
-- Progress page: <https://samdengler.github.io/verified-air/>
-- Verso document: <https://samdengler.github.io/verified-air/review/>
-- Blueprint: <https://samdengler.github.io/verified-air/blueprint/>
-- Explore page, with the dependency graph: <https://samdengler.github.io/verified-air/graph/>, and the blueprint's own graph: <https://samdengler.github.io/verified-air/blueprint/dep_graph_document.html>
-- Tour: <https://samdengler.github.io/verified-air/tour/>
-- PDF: <https://samdengler.github.io/verified-air/blueprint/print.pdf>
-- EARS table, one row per rule: <https://samdengler.github.io/verified-air/ears.csv>
-- Acceptance criteria, one row per criterion: <https://samdengler.github.io/verified-air/ears-criteria.csv>
+- Progress page: <https://verified.dengler.io/>
+- Verso document: <https://verified.dengler.io/review/>
+- Blueprint: <https://verified.dengler.io/blueprint/>
+- Explore page, with the dependency graph: <https://verified.dengler.io/graph/>, and the blueprint's own graph: <https://verified.dengler.io/blueprint/dep_graph_document.html>
+- Tour: <https://verified.dengler.io/tour/>
+- PDF: <https://verified.dengler.io/blueprint/print.pdf>
+- EARS table, one row per rule: <https://verified.dengler.io/ears.csv>
+- Acceptance criteria, one row per criterion: <https://verified.dengler.io/ears-criteria.csv>
 - Requirement specs, rendered on GitHub: <https://github.com/samdengler/verified-air/tree/main/.kiro/specs>
   (the same files are on Pages under `/specs/`)
-- Conformance vectors for implementation checks: <https://samdengler.github.io/verified-air/conformance-vectors.jsonl>
+- Conformance vectors for implementation checks: <https://verified.dengler.io/conformance-vectors.jsonl>
 
 ## Decisions
 
@@ -1187,3 +1187,14 @@ Choices made where the plan left room, in the order they came up.
     lists the rule's sources and says whether it is confirmed, the specs
     index counts the rules by provenance, and `provenance.csv` has a row per
     rule. No rule carries a confirmation, because none has happened.
+56. **The site is served at verified.dengler.io.** The site moved from
+    `samdengler.github.io/verified-air/` to <https://verified.dengler.io/>,
+    a custom domain on the same GitHub Pages deployment. Route 53 holds a
+    CNAME from `verified.dengler.io` to `samdengler.github.io`, and the
+    domain is set in the repository's Pages settings, since a `CNAME` file
+    does nothing when Actions deploys the site. `dengler.io` is a verified
+    domain on the GitHub account, so no other account can serve a page under
+    it. Every link inside the site is relative, so the pages moved to the
+    root unchanged. Unlike decisions 30 and 49, GitHub Pages redirects the
+    old addresses to the new domain. The absolute links in `model.json`,
+    the specs index and this README use the new domain.

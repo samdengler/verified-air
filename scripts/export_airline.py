@@ -46,7 +46,7 @@ STATUS = ROOT / "build" / "status.json"
 THEOREMS = ROOT / "build" / "airline-theorems.json"
 XREF = ROOT / "build" / "review" / "html-multi" / "xref.json"
 OUT = ROOT / "build" / "airline-data"
-SITE = "https://samdengler.github.io/verified-air/"
+SITE = "https://verified.dengler.io/"
 
 
 def load_review():
